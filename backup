@@ -1,0 +1,12 @@
+#!/bin/sh
+# mac version:
+P1=$(ls -l $1 | awk '{print $8;}')
+P2=$(ls -l $1 | awk '{print tolower($6$7);}')
+# echo $P2
+P3=$(date | awk '{print $6;}')
+BFNAME="$P1"
+BFNAME+="_$P2"
+BFNAME+="_$P3"
+BFNAME+="_$1"
+# echo $BFNAME
+/bin/cp -p $1 $BFNAME
