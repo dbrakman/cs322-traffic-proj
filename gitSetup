@@ -14,6 +14,7 @@ done
 cd ~
 echo "  $ git clone https://github.com/dbrakman/cs322-traffic-proj/ "
 git clone https://github.com/dbrakman/cs322-traffic-proj/ Desktop
+cd Desktop
 echo "  $ git checkout -b devel "
 git checkout -b devel origin/devel
 echo " Use "
