@@ -1,3 +1,6 @@
+#!/bin/sh
+# Sets up a Git user and creates a project repository in the Desktop.
+# Designed for use on University of Richmond Macs
 read -r -p "Enter your name: " NAME
 git config --global user.name "$NAME"
 read -r -p "Enter the email associated with your GitHub account: " EMAIL
