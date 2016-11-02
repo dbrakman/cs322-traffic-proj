@@ -8,7 +8,7 @@ git clone https://github.com/dbrakman/cs322-traffic-proj/
 echo "  $ git checkout -b devel "
 git checkout devel
 echo " Use "
-echo "  $ git pull "
+echo "  $ git pull origin devel"
 echo " to get the latest files from the Web,"
 echo " and use the following sequence of commands to put your files online: "
 echo "  $ git add file1 file2 ... 
