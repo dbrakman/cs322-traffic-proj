@@ -3,8 +3,12 @@ git config --global user.name "$NAME"
 read -r -p "Enter the email associated with your GitHub account: " EMAIL
 git config --global user.email " "$EMAIL"
 git config --global credential.helper cache
+echo "Clearing your Desktop (placing contents in ~/tmpDesktop)"
+mkdir ~/tmpDesktop
+find ~/Desktop/ -mindepth 1 -maxdepth 1 -exec mv -t ~/tmpDesktop/ -- {} +
+cd ~
 echo "  $ git clone https://github.com/dbrakman/cs322-traffic-proj/ "
-git clone https://github.com/dbrakman/cs322-traffic-proj/
+git clone https://github.com/dbrakman/cs322-traffic-proj/ Desktop
 echo "  $ git checkout -b devel "
 git checkout devel
 echo " Use "
