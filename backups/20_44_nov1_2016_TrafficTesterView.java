@@ -1,4 +1,4 @@
-// Constructs and runs the TrafficTesterModel
+// Added carParameters list of lists
 // Programmer: Arthur Charlesworth  (c) Copyright 2016
 // Modified by GOATS team: Alex David Rex Tom Zihao
 // *****************************************************************************
@@ -91,14 +91,14 @@ public class TrafficTesterView {
        System.out.println("  and plans to " + 
                           convertToTurnDirection(turnDirectionCode));
     } // end for
-    System.out.println("In TrafficTesterView: constructing a Traffic"+
-            "TesterModel");
-    TrafficTesterModel sim = new TrafficTesterModel(
-            numIntersectionsInOneDirection,numIntersectionsInOneDirection,
-            carParameters);
-    System.out.println("In TrafficTesterView: running the TrafficTesterModel");
-    sim.run();
 
+    // check that carParameters has been appropriately populated
+    for(int i=0; i<numberOfCars; i++){
+        for(int param : carParameters.get(i)){
+            System.out.printf("%d, ",param);
+        }
+        System.out.println("");
+    }
   } // main
 
   public static String convertToLaneDirection(int laneDirectionCode) {

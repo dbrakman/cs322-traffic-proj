@@ -1,4 +1,4 @@
-// Fixed compile error
+// Uncommented Constructor logic, added print statements
 //////////////// 80 characters /////////////////////////////////////////////////
 import java.util.*;
 import java.io.*;
@@ -19,8 +19,7 @@ public class Grid
 		{
 		  for(int colNum=0; colNum<numCols; colNum++)
 		  {
-            System.out.print("Constructing Intersection ("+rowNum+
-                    ","+colNum+")...");
+            System.out.print("Constructing Intersection ("+i+","+j+")...");
             // Construct the right amount of lanes for each intersection
             // There's a pattern:
             //   3 2 2 2
