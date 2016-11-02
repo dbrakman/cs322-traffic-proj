@@ -8,5 +8,5 @@ BFNAME="$P1"
 BFNAME+="_$P2"
 BFNAME+="_$P3"
 BFNAME+="_$1"
-# echo $BFNAME
+echo $BFNAME
 /bin/cp -p $1 $BFNAME

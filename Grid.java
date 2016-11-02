@@ -18,13 +18,8 @@ public class Grid
 		//Constructs cars w/ carParameters
 		for( c:carParameters )
 		{
-			int [] temp = new int[6];
-			for(int i = 0; i < c.size(); i++)
-			{
-				temp[i] = c.get(i);
-			}
-			Car c = new Car(temp[4], temp[5], temp[0]);
-			this.insert(temp[1], temp[2], temp[3], c);
+			Car car = new Car(c.get(4), c.get(5), c.get(0));
+            insertCar(c.get(1), c.get(2), c.get(3), car);
 			//ArrayList carParameters looks like this: [0]int carID, [1]int row, [2]int col, 
 			//[3]int laneDirectionCode, [4]int numBlocksBeforeTurning, [5]int turnDirectionCode
 		}
