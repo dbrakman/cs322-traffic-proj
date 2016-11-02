@@ -32,11 +32,11 @@ BFNAME+="_$DATE"
 BFNAME+="_$YEAR"
 BFNAME+="_$arg"
 #echo "$BFNAME"
-  if [[ "$DEST" != "" ]]
+  if [[ "$DEST" == "" ]]
   then
-    /bin/cp -p -i "$arg" "$DEST/$BFNAME"
+    /bin/cp -p -i "$arg" "$BFNAME"
   else
-    /bin/cp -p -i "$arg $BFNAME"
+    /bin/cp -p -i "$arg" "$DEST/$BFNAME"
   fi
 fi
 
