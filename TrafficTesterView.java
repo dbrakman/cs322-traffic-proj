@@ -1,6 +1,6 @@
+// Constructs and runs the TrafficTesterModel
 // Programmer: Arthur Charlesworth  (c) Copyright 2016
 // Modified by GOATS team: Alex David Rex Tom Zihao
-
 // *****************************************************************************
 // *****************************************************************************
 // **** TrafficTesterView 
@@ -53,6 +53,8 @@ public class TrafficTesterView {
     int laneDirectionCode;
     int numBlocksBeforeTurning;
     int turnDirectionCode;
+    ArrayList< ArrayList<Integer> > carParameters;
+    carParameters = new ArrayList< ArrayList<Integer> >();
     for (int i = 1; i <= numberOfCars; i++) {
        console.nextLine();
        console.nextLine();
@@ -73,6 +75,14 @@ public class TrafficTesterView {
        console.nextLine();
        console.nextLine();
        turnDirectionCode = console.nextInt();
+       ArrayList<Integer> currentParams = new ArrayList<Integer>();
+       currentParams.add(carID);
+       currentParams.add(row);
+       currentParams.add(col);
+       currentParams.add(laneDirectionCode);
+       currentParams.add(numBlocksBeforeTurning);
+       currentParams.add(turnDirectionCode);
+       carParameters.add(currentParams);
        System.out.println("  is born in the lane located at col " + col +
                           " and row " + row + ", that aims " +
                           convertToLaneDirection(laneDirectionCode) + ",");
@@ -81,6 +91,11 @@ public class TrafficTesterView {
        System.out.println("  and plans to " + 
                           convertToTurnDirection(turnDirectionCode));
     } // end for
+    TrafficTesterModel sim = new TrafficTesterModel(
+            numIntersectionsInOneDirection,numIntersectionsInOneDirection,
+            carParameters);
+    sim.run();
+
   } // main
 
   public static String convertToLaneDirection(int laneDirectionCode) {
