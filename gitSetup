@@ -5,7 +5,7 @@ git config --global user.email " "$EMAIL"
 git config --global credential.helper cache
 echo "  $ git clone https://github.com/dbrakman/cs322-traffic-proj/ "
 git clone https://github.com/dbrakman/cs322-traffic-proj/
-echo "  $ git checkout devel "
+echo "  $ git checkout -b devel "
 git checkout devel
 echo " Use "
 echo "  $ git pull "
