@@ -1,3 +1,4 @@
+//Added stub run method; fixed compile errors
 import java.util.ArrayList;
 
 public class TrafficTesterModel{
@@ -16,5 +17,6 @@ public class TrafficTesterModel{
 
 	}
 
-    public void run();
+    public void run(){
+    }
 }
