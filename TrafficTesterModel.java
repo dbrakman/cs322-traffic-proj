@@ -1,4 +1,5 @@
-//Added stub run method; fixed compile errors
+// Added print statement, revised comments
+//////////////// 80 characters /////////////////////////////////////////////////
 import java.util.ArrayList;
 
 public class TrafficTesterModel{
@@ -12,11 +13,12 @@ public class TrafficTesterModel{
 		//********Creating a new grid********
 		Grid g = new Grid(numRows, numCols);
 
-		//********Construct cars by passing them to the grid********
+		//********Teling the grid to make and insert cars********
 		g.insertCars(carParameters);
 
 	}
 
     public void run(){
+        System.out.println("In TrafficTesterModel: running simulation");
     }
 }
