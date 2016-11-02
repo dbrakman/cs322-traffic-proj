@@ -31,7 +31,7 @@ public class Car{
 			return this.turnDirectionCode;
 		}
 		else{
-			return -1;
+			return 0;
 		}
 	}
 }
