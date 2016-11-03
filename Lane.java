@@ -1,3 +1,5 @@
+//Added isEmpty
+
 import java.util.Queue;
 import java.util.LinkedList;
 
@@ -26,6 +28,10 @@ public class Lane{
 	//Adds a provided car c to the lane
 	public boolean add(Car c){
 		return q.add(c);
+	}
+
+	public boolean isEmpty(){
+		return (q.peek() == null);
 	}
 
 }
