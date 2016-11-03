@@ -24,5 +24,6 @@ public class TrafficTesterModel{
 
     public void run(){
         System.out.println("In TrafficTesterModel: running simulation");
+        g.update();
     }
 }
