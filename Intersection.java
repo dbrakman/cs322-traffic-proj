@@ -33,7 +33,7 @@ public class Intersection{
 			if (c != null){
 				System.out.println("  incoming lane having direction " +
 					              TrafficTesterView.convertToLaneDirection(i) +
-					               " is empty");
+					               " is nonempty");
 				int dir = c.getCurrentDirection();
 				//If the car is coming from the North entry point
 				if (i == 0){
@@ -142,11 +142,11 @@ public class Intersection{
 							               "outgoing lane having direction " +
 							     TrafficTesterView.convertToLaneDirection(0));
 					}
-				} else {
+				} 
+			} else {
 					System.out.println("  incoming lane having direction " +
 					              TrafficTesterView.convertToLaneDirection(i) +
 					               " is empty");
-				}
 			}
 		}
 	}
