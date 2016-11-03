@@ -1,4 +1,4 @@
-// Added comments; made variable names more descriptive; fixed line width
+// Uncommented Constructor logic, added print statements
 //////////////// 80 characters /////////////////////////////////////////////////
 import java.util.*;
 import java.io.*;
@@ -12,8 +12,6 @@ public class Grid
 	//Constuctor
     public Grid(int numRows, int numCols) 
 	{
-		
-		/*
         // Allocate space for numRows*numCols intersections
         // In nested for loops, construct lanes and intersections appropriately
 		i = new Intersection[numRows][numCols];
@@ -21,6 +19,7 @@ public class Grid
 		{
 		  for(int colNum=0; colNum<numCols; colNum++)
 		  {
+            System.out.print("Constructing Intersection ("+i+","+j+")...");
             // Construct the right amount of lanes for each intersection
             // There's a pattern:
             //   3 2 2 2
@@ -77,6 +76,7 @@ public class Grid
             //end lane construction
 
 		  i[rowNum][colNum] = new Intersection(inLanes,outLanes);
+          System.out.println("Success!");
 		} 
 	  }
 	// The above code constructs lanes and intersections, populates grid */

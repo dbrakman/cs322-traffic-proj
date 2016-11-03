@@ -1,4 +1,4 @@
-// Fixed runtime errors
+// Fixed compile errors
 //////////////// 80 characters /////////////////////////////////////////////////
 import java.util.*;
 import java.io.*;
@@ -31,46 +31,45 @@ public class Grid
             //   4 3 3 3
 	    	inLanes = new Lane[4];
 			outLanes = new Lane[4];
-			if(rowNum==0){
-			  if(colNum==0){
+			if(rowNum==1){
+			  if(colNum==1){
 				for(int laneDir=0; laneDir<4; laneDir++){
 				  inLanes[laneDir] = new Lane();
 				  outLanes[laneDir] = new Lane();
 				}
-		      } else { //rowNum==0, colNum > 0
+		      } else { //rowNum==1, colNum > 1
 				for(int laneDir=0; laneDir<4; laneDir++){
 				  //better information hiding would be laneDir==Direction.WEST
                   //instead of laneDir==3
 			      if(laneDir==3){ //Don't construct a new lane; use i_prev's
-					inLanes[laneDir] = i[rowNum][colNum-1].getOutLane(laneDir);
-					outLanes[laneDir] = i[rowNum][colNum-1].getInLane(laneDir);
+					inLanes[laneDir] = i[rowNum][colNum-1].getInLane(laneDir);
+					outLanes[laneDir] = i[rowNum][colNum-1].getOutLane(laneDir);
 				  } else {
 					inLanes[laneDir] = new Lane();
 					outLanes[laneDir] = new Lane();
 				  }
 				}
               }
-			} else { //rowNum > 0
-			  if(colNum==0){
+			} else { //rowNum > 1
+			  if(colNum==1){
 				for(int laneDir=0; laneDir<4; laneDir++){
 				  if(laneDir==0){
-					inLanes[laneDir] = i[rowNum-1][colNum].getOutLane(laneDir);
-					outLanes[laneDir] = i[rowNum-1][colNum].getInLane(laneDir);
+					inLanes[laneDir] = i[rowNum-1][colNum].getInLane(laneDir);
+					outLanes[laneDir] = i[rowNum-1][colNum].getOutLane(laneDir);
 				  } else {
 					inLanes[laneDir] = new Lane();
 					outLanes[laneDir] = new Lane();
 				  }
                 }
-			  } else { //rowNum > 0, colNum > 0
+			  } else { //rowNum > 1, colNum > 1
 			    for(int laneDir=0; laneDir<4; laneDir++){
 				  if(laneDir==0){ //later, Direction.SOUTH
-				    inLanes[laneDir] = i[rowNum-1][colNum].getOutLane(laneDir);
-					outLanes[laneDir] = i[rowNum-1][colNum].getInLane(laneDir);
+				    inLanes[laneDir] = i[rowNum-1][colNum].getInLane(laneDir);
+					outLanes[laneDir] = i[rowNum-1][colNum].getOutLane(laneDir);
 				  } else if(laneDir==3){ //later, Direction.WEST
-					  inLanes[laneDir] = 
-                          i[rowNum][colNum-1].getOutLane(laneDir);
+					  inLanes[laneDir] = i[rowNum][colNum-1].getInLane(laneDir);
 					  outLanes[laneDir] =
-                          i[rowNum][colNum-1].getInLane(laneDir);
+                          i[rowNum][colNum-1].getOutLane(laneDir);
 				  } else {
 					inLanes[laneDir] = new Lane();
 					outLanes[laneDir] = new Lane();
