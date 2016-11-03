@@ -1,4 +1,5 @@
 // Fixed runtime errors
+//Added insertCar and update
 //////////////// 80 characters /////////////////////////////////////////////////
 import java.util.*;
 import java.io.*;
@@ -106,11 +107,15 @@ public class Grid
 	
     public void update()
     {
-
+    	for (int k = 0; k < i.length; k++){
+    		for (int j = 0; j < i[0].length; j++){
+    			i[k][j].visit();
+    		}
+    	}
 	}
 
     private void insertCar(int row, int col, int laneDir, Car c)
 	{
-
+		(i[row][col].getInLane(laneDir)).add(c);
 	}
 }
