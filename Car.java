@@ -34,4 +34,8 @@ public class Car{
 			return 0;
 		}
 	}
+
+	public int getID(){
+		return this.carID;
+	}
 }
