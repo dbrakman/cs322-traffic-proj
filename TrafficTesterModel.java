@@ -13,7 +13,7 @@ public class TrafficTesterModel{
 		System.out.println("In TrafficTesterModel(): ");
         //********Creating a new grid********
         System.out.println("  Constructing a Grid...");
-		Grid g = new Grid(numRows, numCols);
+		g = new Grid(numRows, numCols);
 
 		//********Teling the grid to make and insert cars********
 		System.out.println("  Telling the grid to make and insert cars...");
