@@ -1,5 +1,6 @@
 // Fixed runtime errors
 //Added insertCar and update
+//Added print statement
 //////////////// 80 characters /////////////////////////////////////////////////
 import java.util.*;
 import java.io.*;
@@ -109,7 +110,8 @@ public class Grid
     {
     	for (int k = 0; k < i.length; k++){
     		for (int j = 0; j < i[0].length; j++){
-    			i[k][j].visit();
+    			System.out.println("At the intersection located at col " + j + " and row " + k);
+    			i[j][k].visit();
     		}
     	}
 	}
