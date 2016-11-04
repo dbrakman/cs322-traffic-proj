@@ -28,8 +28,8 @@ public class Grid
 		{
 		  for(int colNum=0; colNum<numCols; colNum++)
 		  {
-            System.out.print("Constructing Intersection ("+(rowNum+1)+
-                    ","+(colNum+1)+")...");
+            //System.out.print("Constructing Intersection ("+(rowNum+1)+
+              //      ","+(colNum+1)+")...");
             // Construct the right amount of lanes for each intersection
             // There's a pattern:
             //   3 2 2 2
@@ -99,8 +99,8 @@ public class Grid
 		    }
 	       //end lane construction
 
-	  i[rowNum][colNum] = new Intersection(inLanes,outLanes);
-          System.out.println("Success!");
+	      i[rowNum][colNum] = new Intersection(inLanes,outLanes);
+          //System.out.println("Success!");
 		} 
 	  }
 	// The above code constructs lanes and intersections, populates grid */

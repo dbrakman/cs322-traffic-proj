@@ -35,7 +35,7 @@ public class Intersection{
 			if (c != null){
 				System.out.println("  incoming lane having direction " +
 					              TrafficTesterView.convertToLaneDirection(i) +
-					               " is nonempty");
+					               " is nonempty and");
 				int dir = c.getCurrentDirection();
 				c.update();
 				//If the car is coming from the North entry point
