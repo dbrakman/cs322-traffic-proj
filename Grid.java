@@ -1,4 +1,4 @@
-// Fixed runtime errors
+// Determined which lanes flow out of the grid
 //Added insertCar and update
 //Added print statement
 //////////////// 80 characters /////////////////////////////////////////////////
@@ -87,6 +87,18 @@ public class Grid
 		} 
 	  }
 	// The above code constructs lanes and intersections, populates grid */
+	// Now we determine which lanes flow out of the grid
+	for(int colNum=0; colNum < numCols; colNum++)
+	{
+	  i[0][colNum].getOutlane(SOUTHWARD).setBoundary(); //rows on bottom exit SOUTH
+	  i[numRows-1][colNum].getOutlane(NORTHWARD).setBoundary(); //rows on top exit NORTH
+	}
+	for(int rowNum=0; rowNum < numRows; rowNum++)
+	{
+	  i[rowNum][0].getOutlane(WESTWARD).setBoundary(); //leftmost col exits WEST
+	  i[rowNum][numCols-1].getOutlane(EASTWARD).setBoundary(); //rightmost col exits WEST
+	}
+	    
     }
 
 	public void insertCars(ArrayList< ArrayList<Integer> > carParameters)
