@@ -41,12 +41,12 @@ public class TrafficTesterView {
     Scanner console = new Scanner(System.in);
     console.nextLine();
     int numIntersectionsInOneDirection = console.nextInt();
-    //System.out.print("The number of intersections in one direction ");
-    //System.out.println("is: " + numIntersectionsInOneDirection);
+    System.out.print("The number of intersections in one direction ");
+    System.out.println("is: " + numIntersectionsInOneDirection);
     console.nextLine();
     console.nextLine();
     int numberOfCars = console.nextInt();
-    //System.out.println("The number of cars is: " + numberOfCars);
+    System.out.println("The number of cars is: " + numberOfCars);
     int carID;
     int row;
     int col;
@@ -59,7 +59,7 @@ public class TrafficTesterView {
        console.nextLine();
        console.nextLine();
        carID = console.nextInt();
-       //System.out.println("Car #" + carID);
+       System.out.println("Car #" + carID);
        console.nextLine();
        console.nextLine();
        col = console.nextInt();
@@ -83,20 +83,20 @@ public class TrafficTesterView {
        currentParams.add(numBlocksBeforeTurning);
        currentParams.add(turnDirectionCode);
        carParameters.add(currentParams);
-       //System.out.println("  is born in the lane located at col " + col +
-        //                  " and row " + row + ", that aims " +
-        //                  convertToLaneDirection(laneDirectionCode) + ",");
-       //System.out.println("  and has " + numBlocksBeforeTurning +
-        //                  " block(s) to go before turning");
-       //System.out.println("  and plans to " + 
-        //                  convertToTurnDirection(turnDirectionCode));
+       System.out.println("  is born in the lane located at col " + col +
+                          " and row " + row + ", that aims " +
+                          convertToLaneDirection(laneDirectionCode) + ",");
+       System.out.println("  and has " + numBlocksBeforeTurning +
+                          " block(s) to go before turning");
+       System.out.println("  and plans to " + 
+                          convertToTurnDirection(turnDirectionCode));
     } // end for
-    //System.out.println("In TrafficTesterView: constructing a Traffic"+
-            //"TesterModel");
+    System.out.println("In TrafficTesterView: constructing a Traffic"+
+            "TesterModel");
     TrafficTesterModel sim = new TrafficTesterModel(
             numIntersectionsInOneDirection,numIntersectionsInOneDirection,
             carParameters);
-    //System.out.println("In TrafficTesterView: running the TrafficTesterModel");
+    System.out.println("In TrafficTesterView: running the TrafficTesterModel");
     sim.run();
 
   } // main

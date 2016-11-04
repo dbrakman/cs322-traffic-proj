@@ -1,0 +1,49 @@
+At the intersection located at col 1 and row 1
+  incoming lane having direction SOUTHWARD is empty
+  incoming lane having direction EASTWARD is nonempty
+   car#4 is removed and placed into outgoing lane having direction EASTWARD
+  incoming lane having direction NORTHWARD is empty
+  incoming lane having direction WESTWARD is empty
+  outgoing lane having direction SOUTHWARD is empty
+  outgoing lane having direction EASTWARD is nonempty
+  outgoing lane having direction NORTHWARD is nonempty
+  outgoing lane having direction WESTWARD is empty
+At the intersection located at col 2 and row 1
+  incoming lane having direction SOUTHWARD is nonempty
+   car#6 is removed and placed into outgoing lane having direction EASTWARD
+   car#6 leaves the grid
+  incoming lane having direction EASTWARD is nonempty
+   car#4 is removed and placed into outgoing lane having direction SOUTHWARD
+   car#4 leaves the grid
+  incoming lane having direction NORTHWARD is nonempty
+   car#5 is removed and placed into outgoing lane having direction NORTHWARD
+  incoming lane having direction WESTWARD is empty
+  outgoing lane having direction SOUTHWARD is nonempty
+  outgoing lane having direction EASTWARD is nonempty
+  outgoing lane having direction NORTHWARD is nonempty
+  outgoing lane having direction WESTWARD is empty
+At the intersection located at col 1 and row 2
+  incoming lane having direction SOUTHWARD is empty
+  incoming lane having direction EASTWARD is empty
+  incoming lane having direction NORTHWARD is nonempty
+   car#3 is removed and placed into outgoing lane having direction EASTWARD
+  incoming lane having direction WESTWARD is nonempty
+   car#2 is removed and placed into outgoing lane having direction WESTWARD
+   car#2 leaves the grid
+  outgoing lane having direction SOUTHWARD is empty
+  outgoing lane having direction EASTWARD is nonempty
+  outgoing lane having direction NORTHWARD is empty
+  outgoing lane having direction WESTWARD is nonempty
+At the intersection located at col 2 and row 2
+  incoming lane having direction SOUTHWARD is nonempty
+   car#1 is removed and placed into outgoing lane having direction SOUTHWARD
+  incoming lane having direction EASTWARD is nonempty
+   car#3 is removed and placed into outgoing lane having direction EASTWARD
+   car#3 leaves the grid
+  incoming lane having direction NORTHWARD is nonempty
+   car#5 is removed and placed into outgoing lane having direction WESTWARD
+  incoming lane having direction WESTWARD is empty
+  outgoing lane having direction SOUTHWARD is nonempty
+  outgoing lane having direction EASTWARD is nonempty
+  outgoing lane having direction NORTHWARD is empty
+  outgoing lane having direction WESTWARD is nonempty
