@@ -1,4 +1,4 @@
-// Fixed column 80
+// Tried to fix runtime error with lanes not existing
 //Added insertCar and update
 //Added print statement
 //////////////// 80 characters /////////////////////////////////////////////////
@@ -47,16 +47,14 @@ public class Grid
 		      } else { //rowNum==0, colNum > 0
 				for(int cardinalDir=0; cardinalDir<4; cardinalDir++){
                     if(cardinalDir==WESTWARD){
-                        outLanes[WESTWARD] = 
-                            i[rowNum][colNum-1].getInLane(WESTWARD);
+                        outLanes[WESTWARD] = i[rowNum][colNum-1].getInLane(WESTWARD);
                     } else {
                         outLanes[cardinalDir] = new Lane();
                     }
                 }
                 for(int cardinalDir=0; cardinalDir<4; cardinalDir++){
                     if(cardinalDir==EASTWARD){
-                        inLanes[EASTWARD] = 
-                            i[rowNum][colNum-1].getOutLane(EASTWARD);
+                        inLanes[EASTWARD] = i[rowNum][colNum-1].getOutLane(EASTWARD);
                     } else {
                         inLanes[cardinalDir] = new Lane();
                     }
@@ -66,16 +64,14 @@ public class Grid
 			  if(colNum==0){
 				for(int cardinalDir=0; cardinalDir<4; cardinalDir++){
                     if(cardinalDir==SOUTHWARD){
-                        outLanes[SOUTHWARD] = 
-                            i[rowNum-1][colNum].getInLane(SOUTHWARD);
+                        outLanes[SOUTHWARD] = i[rowNum-1][colNum].getInLane(SOUTHWARD);
                     } else {
                         outLanes[cardinalDir] = new Lane();
                     }
                 }
                 for(int cardinalDir=0; cardinalDir<4; cardinalDir++){
                     if(cardinalDir==NORTHWARD){
-                        inLanes[NORTHWARD] = 
-                            i[rowNum-1][colNum].getOutLane(NORTHWARD);
+                        inLanes[NORTHWARD] = i[rowNum-1][colNum].getOutLane(NORTHWARD);
                     } else {
                         inLanes[cardinalDir] = new Lane();
                     }
@@ -83,22 +79,18 @@ public class Grid
               } else { //rowNum > 0, colNum > 0
 			    for(int cardinalDir=0; cardinalDir<4; cardinalDir++){
                     if(cardinalDir==SOUTHWARD){
-                        outLanes[SOUTHWARD] = 
-                            i[rowNum-1][colNum].getInLane(SOUTHWARD);
+                        outLanes[SOUTHWARD] = i[rowNum-1][colNum].getInLane(SOUTHWARD);
                     } else if(cardinalDir==WESTWARD){
-                        outLanes[WESTWARD] = 
-                            i[rowNum][colNum-1].getInLane(SOUTHWARD);
+                        outLanes[WESTWARD] = i[rowNum][colNum-1].getInLane(SOUTHWARD);
                     } else {
                         outLanes[cardinalDir] = new Lane();
                     }
                 }
                 for(int cardinalDir=0; cardinalDir<4; cardinalDir++){
                     if(cardinalDir==NORTHWARD){
-                        inLanes[NORTHWARD] = 
-                            i[rowNum-1][colNum].getOutLane(NORTHWARD);
+                        inLanes[NORTHWARD] = i[rowNum-1][colNum].getOutLane(NORTHWARD);
                     } else if(cardinalDir==EASTWARD){
-                        inLanes[EASTWARD] = 
-                            i[rowNum][colNum-1].getOutLane(EASTWARD);
+                        inLanes[EASTWARD] = i[rowNum][colNum-1].getOutLane(EASTWARD);
                     } else {
                         inLanes[cardinalDir] = new Lane();
                     }
@@ -114,17 +106,13 @@ public class Grid
 	// The above code constructs lanes and intersections, populates grid */
       for(int colNum=0; colNum < numCols; colNum++)
 	  {
-	    i[0][colNum].getOutLane(SOUTHWARD).setIsBoundary(); 
-        //bottom row exits SOUTH
-	    i[numRows-1][colNum].getOutLane(NORTHWARD).setIsBoundary(); 
-        //top row exits NORTH
+	    i[0][colNum].getOutLane(SOUTHWARD).setIsBoundary(); //rows on bottom exit SOUTH
+	    i[numRows-1][colNum].getOutLane(NORTHWARD).setIsBoundary(); //rows on top exit NORTH
 	  }
 	  for(int rowNum=0; rowNum < numRows; rowNum++)
 	  {
-	    i[rowNum][0].getOutLane(WESTWARD).setIsBoundary(); 
-        //leftmost col exits WEST
-	    i[rowNum][numCols-1].getOutLane(EASTWARD).setIsBoundary(); 
-        //rightmost col exits WEST
+	    i[rowNum][0].getOutLane(WESTWARD).setIsBoundary(); //leftmost col exits WEST
+	    i[rowNum][numCols-1].getOutLane(EASTWARD).setIsBoundary(); //rightmost col exits WEST
 	  }
     }
 
@@ -140,20 +128,17 @@ public class Grid
 			}
 			Car c = new Car(temp[4], temp[5], temp[0]);
 			this.insertCar(temp[1], temp[2], temp[3], c);
-			//ArrayList carParameters looks like this: 
-                //[0]int carID, [1]int row, [2]int col, 
-			    //[3]int laneDirectionCode, [4]int numBlocksBeforeTurning,
-                //[5]int turnDirectionCode
+			//ArrayList carParameters looks like this: [0]int carID, [1]int row, [2]int col, 
+			//[3]int laneDirectionCode, [4]int numBlocksBeforeTurning, [5]int turnDirectionCode
 		}
 	}
 	
     public void update()
     {
-        System.out.println("");
     	for (int rowNum = 0; rowNum < i.length; rowNum++){
             for (int colNum = 0; colNum < i[0].length; colNum++){
-    		    System.out.println("At the intersection located at col " +
-                                    (colNum+1) + " and row " + (rowNum+1));
+    		    System.out.println("At the intersection located at col " + (colNum+1) +
+                                   " and row " + (rowNum+1));
     			i[rowNum][colNum].visit();
     		}
     	}
