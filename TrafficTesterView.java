@@ -1,4 +1,4 @@
-// Constructs and runs the TrafficTesterModel
+// Swapped column and row
 // Programmer: Arthur Charlesworth  (c) Copyright 2016
 // Modified by GOATS team: Alex David Rex Tom Zihao
 // *****************************************************************************
@@ -62,10 +62,10 @@ public class TrafficTesterView {
        System.out.println("Car #" + carID);
        console.nextLine();
        console.nextLine();
-       row = console.nextInt();
-       console.nextLine();
-       console.nextLine();
        col = console.nextInt();
+       console.nextLine();
+       console.nextLine();
+       row = console.nextInt();
        console.nextLine();
        console.nextLine();
        laneDirectionCode = console.nextInt();
