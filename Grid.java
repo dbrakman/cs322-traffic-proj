@@ -97,9 +97,20 @@ public class Grid
                 }
 			  }
 		    }
+	for(int colNum=0; colNum < numCols; colNum++)
+	{
+	  i[0][colNum].getOutlane(SOUTHWARD).setBoundary(); //rows on bottom exit SOUTH
+	  i[numRows-1][colNum].getOutlane(NORTHWARD).setBoundary(); //rows on top exit NORTH
+	}
+	for(int rowNum=0; rowNum < numRows; rowNum++)
+	{
+	  i[rowNum][0].getOutlane(WESTWARD).setBoundary(); //leftmost col exits WEST
+	  i[rowNum][numCols-1].getOutlane(EASTWARD).setBoundary(); //rightmost col exits WEST
+	}
+	        
             //end lane construction
 
-		  i[rowNum][colNum] = new Intersection(inLanes,outLanes);
+	  i[rowNum][colNum] = new Intersection(inLanes,outLanes);
           System.out.println("Success!");
 		} 
 	  }
