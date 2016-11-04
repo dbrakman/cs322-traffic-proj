@@ -1,4 +1,5 @@
 // Corrected output directions
+//Called update() after getting the turn direction
 //////////////// 80 characters /////////////////////////////////////////////////
 
 //Intersection Class
@@ -36,6 +37,7 @@ public class Intersection{
 					              TrafficTesterView.convertToLaneDirection(i) +
 					               " is nonempty");
 				int dir = c.getCurrentDirection();
+				c.update();
 				//If the car is coming from the North entry point
 				if (i == 0){
 					if (dir == 0){//Straight
