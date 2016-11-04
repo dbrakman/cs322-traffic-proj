@@ -1,3 +1,4 @@
+// Fixed column 80
 //Added insertCar and update
 //Added print statement
 //////////////// 80 characters /////////////////////////////////////////////////
@@ -11,6 +12,7 @@ public class Grid
     public static final int NORTHWARD = 2;
     public static final int WESTWARD = 3;
 
+    // Store Intersections in a 2D array:
     //   Since Java is 0-indexed, Intersection (1,2) is i[0][1]
     private Intersection i[][];
     
