@@ -1,4 +1,4 @@
-// Determined which lanes flow out of the grid
+// Tried to fix runtime error with lanes not existing
 //Added insertCar and update
 //Added print statement
 //////////////// 80 characters /////////////////////////////////////////////////
@@ -7,6 +7,11 @@ import java.io.*;
 
 public class Grid
 {
+    public static final int SOUTHWARD = 0;
+    public static final int EASTWARD = 1;
+    public static final int NORTHWARD = 2;
+    public static final int WESTWARD = 3;
+
 	// Store Intersections in a 2D array:
     //   Since Java is 0-indexed, Intersection (1,2) is i[0][1]
     private Intersection i[][];
@@ -23,8 +28,8 @@ public class Grid
 		{
 		  for(int colNum=0; colNum<numCols; colNum++)
 		  {
-            System.out.print("Constructing Intersection ("+rowNum+
-                    ","+colNum+")...");
+            System.out.print("Constructing Intersection ("+(rowNum+1)+
+                    ","+(colNum+1)+")...");
             // Construct the right amount of lanes for each intersection
             // There's a pattern:
             //   3 2 2 2
@@ -35,49 +40,61 @@ public class Grid
 			outLanes = new Lane[4];
 			if(rowNum==0){
 			  if(colNum==0){
-				for(int laneDir=0; laneDir<4; laneDir++){
-				  inLanes[laneDir] = new Lane();
-				  outLanes[laneDir] = new Lane();
+				for(int cardinalDir=0; cardinalDir<4; cardinalDir++){
+				  inLanes[cardinalDir] = new Lane();
+				  outLanes[cardinalDir] = new Lane();
 				}
 		      } else { //rowNum==0, colNum > 0
-				for(int laneDir=0; laneDir<4; laneDir++){
-				  //better information hiding would be laneDir==Direction.WEST
-                  //instead of laneDir==3
-			      if(laneDir==3){ //Don't construct a new lane; use i_prev's
-					inLanes[laneDir] = i[rowNum][colNum-1].getOutLane(laneDir);
-					outLanes[laneDir] = i[rowNum][colNum-1].getInLane(laneDir);
-				  } else {
-					inLanes[laneDir] = new Lane();
-					outLanes[laneDir] = new Lane();
-				  }
-				}
+				for(int cardinalDir=0; cardinalDir<4; cardinalDir++){
+                    if(cardinalDir==WESTWARD){
+                        outLanes[WESTWARD] = i[rowNum][colNum-1].getInLane(WESTWARD);
+                    } else {
+                        outLanes[cardinalDir] = new Lane();
+                    }
+                }
+                for(int cardinalDir=0; cardinalDir<4; cardinalDir++){
+                    if(cardinalDir==EASTWARD){
+                        inLanes[EASTWARD] = i[rowNum][colNum-1].getOutLane(EASTWARD);
+                    } else {
+                        inLanes[cardinalDir] = new Lane();
+                    }
+                }
               }
 			} else { //rowNum > 0
 			  if(colNum==0){
-				for(int laneDir=0; laneDir<4; laneDir++){
-				  if(laneDir==0){
-					inLanes[laneDir] = i[rowNum-1][colNum].getOutLane(laneDir);
-					outLanes[laneDir] = i[rowNum-1][colNum].getInLane(laneDir);
-				  } else {
-					inLanes[laneDir] = new Lane();
-					outLanes[laneDir] = new Lane();
-				  }
+				for(int cardinalDir=0; cardinalDir<4; cardinalDir++){
+                    if(cardinalDir==SOUTHWARD){
+                        outLanes[SOUTHWARD] = i[rowNum-1][colNum].getInLane(SOUTHWARD);
+                    } else {
+                        outLanes[cardinalDir] = new Lane();
+                    }
                 }
-			  } else { //rowNum > 0, colNum > 0
-			    for(int laneDir=0; laneDir<4; laneDir++){
-				  if(laneDir==0){ //later, Direction.SOUTH
-				    inLanes[laneDir] = i[rowNum-1][colNum].getOutLane(laneDir);
-					outLanes[laneDir] = i[rowNum-1][colNum].getInLane(laneDir);
-				  } else if(laneDir==3){ //later, Direction.WEST
-					  inLanes[laneDir] = 
-                          i[rowNum][colNum-1].getOutLane(laneDir);
-					  outLanes[laneDir] =
-                          i[rowNum][colNum-1].getInLane(laneDir);
-				  } else {
-					inLanes[laneDir] = new Lane();
-					outLanes[laneDir] = new Lane();
-				  }
-				}
+                for(int cardinalDir=0; cardinalDir<4; cardinalDir++){
+                    if(cardinalDir==NORTHWARD){
+                        inLanes[NORTHWARD] = i[rowNum-1][colNum].getOutLane(NORTHWARD);
+                    } else {
+                        inLanes[cardinalDir] = new Lane();
+                    }
+                }
+              } else { //rowNum > 0, colNum > 0
+			    for(int cardinalDir=0; cardinalDir<4; cardinalDir++){
+                    if(cardinalDir==SOUTHWARD){
+                        outLanes[SOUTHWARD] = i[rowNum-1][colNum].getInLane(SOUTHWARD);
+                    } else if(cardinalDir==WESTWARD){
+                        outLanes[WESTWARD] = i[rowNum][colNum-1].getInLane(SOUTHWARD);
+                    } else {
+                        outLanes[cardinalDir] = new Lane();
+                    }
+                }
+                for(int cardinalDir=0; cardinalDir<4; cardinalDir++){
+                    if(cardinalDir==NORTHWARD){
+                        inLanes[NORTHWARD] = i[rowNum-1][colNum].getOutLane(NORTHWARD);
+                    } else if(cardinalDir==EASTWARD){
+                        inLanes[EASTWARD] = i[rowNum][colNum-1].getOutLane(EASTWARD);
+                    } else {
+                        inLanes[cardinalDir] = new Lane();
+                    }
+                }
 			  }
 		    }
             //end lane construction
@@ -87,18 +104,6 @@ public class Grid
 		} 
 	  }
 	// The above code constructs lanes and intersections, populates grid */
-	// Now we determine which lanes flow out of the grid
-	for(int colNum=0; colNum < numCols; colNum++)
-	{
-	  i[0][colNum].getOutlane(SOUTHWARD).setBoundary(); //rows on bottom exit SOUTH
-	  i[numRows-1][colNum].getOutlane(NORTHWARD).setBoundary(); //rows on top exit NORTH
-	}
-	for(int rowNum=0; rowNum < numRows; rowNum++)
-	{
-	  i[rowNum][0].getOutlane(WESTWARD).setBoundary(); //leftmost col exits WEST
-	  i[rowNum][numCols-1].getOutlane(EASTWARD).setBoundary(); //rightmost col exits WEST
-	}
-	    
     }
 
 	public void insertCars(ArrayList< ArrayList<Integer> > carParameters)
@@ -120,10 +125,11 @@ public class Grid
 	
     public void update()
     {
-    	for (int k = 0; k < i.length; k++){
-    		for (int j = 0; j < i[0].length; j++){
-    			System.out.println("At the intersection located at col " + j + " and row " + k);
-    			i[k][j].visit();
+    	for (int rowNum = 0; rowNum < i.length; rowNum++){
+            for (int colNum = 0; colNum < i[0].length; colNum++){
+    		    System.out.println("At the intersection located at col " + (colNum+1) +
+                                   " and row " + (rowNum+1));
+    			i[rowNum][colNum].visit();
     		}
     	}
 	}
