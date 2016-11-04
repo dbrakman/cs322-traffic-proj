@@ -1,4 +1,4 @@
-// Added print statements
+// Added print statements for outgoing lanes
 //////////////// 80 characters /////////////////////////////////////////////////
 
 //Intersection Class
@@ -27,6 +27,7 @@ public class Intersection{
 
 	//Looks at each lane in inLane and moves the car in that lane 
 	//(if it has one) into the appropriate outLane spot
+    // Print the empty/nonempty status of incoming lanes, and when cars moved
 	public void visit(){
 		for (int i = 0; i <= 3; i++){
 			Car c = inLane[i].get();
@@ -149,6 +150,19 @@ public class Intersection{
 				}
 			}
 		}
+        // Now all the incoming cars have been moved to outLanes
+        // Iterate through the outgoing lanes, printing empty/nonempty
+        for(int l=0; l<4; l++){
+            if( outLane[l].isEmpty() ){
+                System.out.println("  outgoing lane having direction " +
+					              TrafficTesterView.convertToLaneDirection(l) +
+					               " is empty");
+            } else {
+                System.out.println("  outgoing lane having direction " +
+					              TrafficTesterView.convertToLaneDirection(l) +
+                                  " is nonempty");
+            }
+        }
 	}
 }
 
