@@ -1,4 +1,5 @@
 //Added isEmpty
+//Updated add and added setIsBoundary
 
 import java.util.Queue;
 import java.util.LinkedList;
@@ -13,10 +14,12 @@ import java.util.LinkedList;
 public class Lane{
 	//**************Instance Variables**************
 	public Queue<Car> q;
+	public boolean boundary;
 
 	//**************Constructor**************
 	public Lane(){
 		q = new LinkedList<Car>();
+		boundary = false;
 	}
 
 	//**************Instance Methods**************
@@ -27,11 +30,18 @@ public class Lane{
 
 	//Adds a provided car c to the lane
 	public boolean add(Car c){
+		if (this.boundary == true){
+			System.out.println("   car#" + c.getID() + " leaves the grid");
+		}
 		return q.add(c);
 	}
 
 	public boolean isEmpty(){
 		return (q.peek() == null);
+	}
+
+	public void setIsBoundary(){
+		this.boundary = true;
 	}
 
 }
