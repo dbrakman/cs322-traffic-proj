@@ -1,6 +1,6 @@
 // Programmers: GOATS team: Alex David Rex Tom Zihao
 // Grid.java
-// Latest Enhancement: Fixed blank lines in output
+// Latest Enhancement: Fixed comments
 //////////////// 80 characters /////////////////////////////////////////////////
 import java.util.*;
 import java.io.*;
@@ -149,9 +149,9 @@ public class Grid
     
     public void update()
     {
+        System.out.println("");
         for (int rowNum = 0; rowNum < i.length; rowNum++){
             for (int colNum = 0; colNum < i[0].length; colNum++){
-                System.out.println("");
                 System.out.println("At the intersection located at col " +
                                     (colNum+1) + " and row " + (rowNum+1));
                 i[rowNum][colNum].visit();

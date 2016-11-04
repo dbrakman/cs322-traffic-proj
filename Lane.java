@@ -1,5 +1,7 @@
-//Added isEmpty
-//Updated add and added setIsBoundary
+// Programmers: GOATS team: Alex David Rex Tom Zihao
+// Lane.java
+// Latest Enhancement: Fixed comments
+//////////////// 80 characters /////////////////////////////////////////////////
 
 import java.util.Queue;
 import java.util.LinkedList;
