@@ -12,15 +12,13 @@ public class Car{
 	int numBlocksBeforeTurning;
 	int turnDirectionCode;
 	int carID;
-
-	
 	
 	//**************Constructor**************
 	public Car(int initialNumBlocks, int turnDirectionCode, int carID){
 		this.numBlocksBeforeTurning = initialNumBlocks;
 		this.turnDirectionCode = turnDirectionCode;
 		this.carID = carID;
-	}//end of car construction
+	}//End of car constructor
 
 	
 	
@@ -29,7 +27,7 @@ public class Car{
 	//decrement the numBlocksBeforeTurning 
 	public void update(){
 		this.numBlocksBeforeTurning--;
-	}//end of update()
+	}//End of update() method
 
 
 
@@ -40,16 +38,16 @@ public class Car{
 	public int getCurrentDirection(){
 		if (this.numBlocksBeforeTurning == 0){
 			return this.turnDirectionCode;
-		}//end of if(this.numBlocksBeforeTurning == 0)
+		}//End of if(this.numBlocksBeforeTurning == 0)
 		else{
 			return 0;
 		}
-	}//end of getCurrentDirection()
+	}//End of getCurrentDirection() method
 
 	
 
 	//Return the ID of a car
 	public int getID(){
 		return this.carID;
-	}//end of getID()
+	}//End of getID() method
 }
