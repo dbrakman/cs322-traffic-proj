@@ -4,8 +4,8 @@
 // **** Car 
 // *****************************************************************************
 // *****************************************************************************
-// The Car class keeps tracks of ID, when to turn, and turning dirction of each
-// instance of Car, and provide such information if needed.
+// The Car class keeps track of ID, when to turn, and turning direction of each
+// instance of Car, and provides such information if needed.
 
 public class Car{
 	//**************Instance Variables**************
