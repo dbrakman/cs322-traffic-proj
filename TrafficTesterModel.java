@@ -31,6 +31,7 @@ public class TrafficTesterModel{
 
 
 
+	//Calls update() on the Grid, causing the intersections to be looked at
     public void run(){
         //System.out.println("In TrafficTesterModel: running simulation");
         g.update();
