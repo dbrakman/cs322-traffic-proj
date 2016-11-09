@@ -7,7 +7,7 @@
 // The purpose of the TrafficTesterModel is to create a grid given a provided
 // numRows and numCols.  Provided cars are then inserted into the grid.
 // Latest Enhancement: Stage 0 Corrections
-//////////////// 80 characters /////////////////////////////////////////////////
+
 import java.util.ArrayList;
 
 public class TrafficTesterModel{
