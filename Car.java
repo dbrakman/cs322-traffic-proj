@@ -13,6 +13,8 @@ public class Car{
 	int turnDirectionCode;
 	int carID;
 
+	
+	
 	//**************Constructor**************
 	public Car(int initialNumBlocks, int turnDirectionCode, int carID){
 		this.numBlocksBeforeTurning = initialNumBlocks;
@@ -20,6 +22,8 @@ public class Car{
 		this.carID = carID;
 	}//end of car construction
 
+	
+	
 	//**************Instance Methods**************
 	//After a car moves from one lane to another, update() is called to 
 	//decrement the numBlocksBeforeTurning 
