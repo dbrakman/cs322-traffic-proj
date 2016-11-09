@@ -5,7 +5,7 @@
 // *****************************************************************************
 // *****************************************************************************
 
-// Latest Enhancement: Changed indexing to srtart at 1 for stage_0
+// Latest Enhancement: Applied style rules for stage_0 (except indexing)
 import java.util.*;
 import java.io.*;
 
@@ -17,8 +17,7 @@ public class Grid
     public static final int WESTWARD = 3;
 
     // Store Intersections in a 2D array:
-    // Even though Java is 0-indexed, Intersection (1,2) is i[1][2]
-    // We achieve this by not initializing row 0 and col 0
+    //   Since Java is 0-indexed, Intersection (1,2) is i[0][1]
     private Intersection i[][];
     private int numRows;
     private int numCols;
@@ -30,38 +29,38 @@ public class Grid
         this.numCols = numCols;
         // Allocate space for numRows*numCols intersections
         // In nested for loops, construct lanes and intersections appropriately
-        i = new Intersection[numRows + 1][numCols + 1];
-        for(int rowNum = 1; rowNum <= numRows; rowNum++)
+        i = new Intersection[numRows][numCols];
+        for(int rowNum = 0; rowNum < numRows; rowNum++)
         {
-            for(int colNum=1; colNum <= numCols; colNum++)
+            for(int colNum=0; colNum<numCols; colNum++)
             {
-                //System.out.print("Constructing Intersection ("+rowNum+
-                    //      ","+colNum+")...");
+                //System.out.print("Constructing Intersection ("+(rowNum+1)+
+                    //      ","+(colNum+1)+")...");
                 // Construct the right amount of lanes for each intersection
                 // There's a pattern in the number of "new" lane pairs for each:
                 //   3 2 2 2
                 //   3 2 2 2
                 //   3 2 2 2
                 //   4 3 3 3
-                if(rowNum==1)
+                if(rowNum==0)
                 {
-                    if(colNum==1)
+                    if(colNum==0)
                     {
                         // Construct 4 new lanes for Intersection [1,1]
                         shareNoLanes(rowNum, colNum);
-                    } else { //rowNum==1, colNum > 1
+                    } else { //rowNum==0, colNum > 0
                         // Constructs and shares lanes for the intersection at
                         // [rowNum, colNum]
                         shareLanesWithLeft(rowNum,colNum);
-                    } // end of if(colNum==1)
-                } else { //rowNum > 1
-                    if(colNum==1)
+                    } // end of if(colNum==0)
+                } else { //rowNum > 0
+                    if(colNum==0)
                     {
                         shareLanesWithBelow(rowNum,colNum);
-                    } else { //rowNum > 1, colNum > 1
+                    } else { //rowNum > 0, colNum > 0
                         shareLanesWithLeftAndBelow(rowNum,colNum);
-                    } // end of if(colNum==1)
-                } // end of if(rowNum==1)
+                    } // end of if(colNum==0)
+                } // end of if(rowNum==0)
                 //end lane construction
                 //System.out.println("Success!");
             } // end of for(int colNum=0; colNum<numCols; colNum++)
@@ -90,13 +89,13 @@ public class Grid
     
     public void update()
     {
-        for ( int rowNum = 1; rowNum <= numRows; rowNum++ )
+        for ( int rowNum = 0; rowNum < i.length; rowNum++ )
         {
-            for ( int colNum = 1; colNum <= numCols; colNum++ )
+            for ( int colNum = 0; colNum < i[0].length; colNum++ )
             {
                 System.out.println("");
                 System.out.println("At the intersection located at col " +
-                                    colNum+ " and row " + rowNum);
+                                    (colNum+1) + " and row " + (rowNum+1));
                 i[rowNum][colNum].visit();
             } // end of for( int colNum = 0; colNum < i[0].length; colNum++ )
         } // end of for( int rowNum = 0; rowNum < i.length; rowNum++ )
@@ -106,7 +105,7 @@ public class Grid
 
     private void insertCar(int row, int col, int laneDir, Car c)
     {
-        (i[row][col].getInLane(laneDir)).add(c);
+        (i[row-1][col-1].getInLane(laneDir)).add(c);
     } // end of insertCar(int row, int col, int laneDir, Car c)
 
 
@@ -222,20 +221,20 @@ public class Grid
 
     private void setOutboundBoundaryLanes()
     {
-        for( int colNum=1; colNum <= numCols; colNum++ )
+        for(int colNum=0; colNum < numCols; colNum++)
         {
-            i[1][colNum].getOutLane(SOUTHWARD).setIsBoundary(); 
+            i[0][colNum].getOutLane(SOUTHWARD).setIsBoundary(); 
             //bottom row exits SOUTH
-            i[numRows][colNum].getOutLane(NORTHWARD).setIsBoundary(); 
+            i[numRows-1][colNum].getOutLane(NORTHWARD).setIsBoundary(); 
             //top row exits NORTH
-        } // end of for( int colNum=1; colNum <= numCols; colNum++ )
-        for( int rowNum=1; rowNum <= numRows; rowNum++ )
+        }
+        for(int rowNum=0; rowNum < numRows; rowNum++)
         {
-            i[rowNum][1].getOutLane(WESTWARD).setIsBoundary(); 
+            i[rowNum][0].getOutLane(WESTWARD).setIsBoundary(); 
             //leftmost col exits WEST
-            i[rowNum][numCols].getOutLane(EASTWARD).setIsBoundary(); 
+            i[rowNum][numCols-1].getOutLane(EASTWARD).setIsBoundary(); 
             //rightmost col exits WEST
-        } // end of for( int rowNum=1; rowNum <= numRows; rowNum++ )
+        }
     } // end of setOutboundBoundaryLanes()
 
 
