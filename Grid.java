@@ -4,8 +4,8 @@
 // **** Grid
 // *****************************************************************************
 // *****************************************************************************
+// Latest Enhancement: Changed indexing to start at 1 for stage_0
 
-// Latest Enhancement: Changed indexing to srtart at 1 for stage_0
 import java.util.*;
 import java.io.*;
 
