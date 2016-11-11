@@ -15,28 +15,28 @@
 
 public class Intersection {
     //**************Instance Variables**************
-	public Lane[] inLane;
-	public Lane[] outLane;
+    public Lane[] inLane;
+    public Lane[] outLane;
 
     //**************Constructor**************
-	public Intersection(Lane[] inLanes, Lane[] outLanes)
-	{
-		this.inLane = inLanes;
-		this.outLane = outLanes;
-	}// end of Intersection(Lane[], Lane[]) constructor
+    public Intersection(Lane[] inLanes, Lane[] outLanes)
+    {
+        this.inLane = inLanes;
+        this.outLane = outLanes;
+    }// end of Intersection(Lane[], Lane[]) constructor
 
 
 
     //**************Instance Methods**************
     // Getter methods to get references to incoming, outgoing lanes
-	public Lane getInLane(int laneDir)
+    public Lane getInLane(int laneDir)
     {
         return inLane[laneDir]; 
     }//end of getInLane()
 
 
 
-	public Lane getOutLane(int laneDir)
+    public Lane getOutLane(int laneDir)
     { 
         return outLane[laneDir]; 
     }//end of getOutLane()
@@ -46,34 +46,34 @@ public class Intersection {
     //The following methods look 
     //at each lane in inLane and move the car in that lane
     //for use in visit() 
-	public void fromNorth(int dir, Car c)
-	{
-	    //If the car is coming from the North entry point
-		if (dir == 0)
-		{//Straight
+    public void fromNorth(int dir, Car c)
+    {
+        //If the car is coming from the North entry point
+        if (dir == 0)
+        {//Straight
             System.out.println("   car#" + 
-                    		   c.getID() +
-                    		   " is removed and placed into " + 
-                    		   "outgoing lane having direction " +
-                    		   TrafficTesterView.convertToLaneDirection(0));
+                               c.getID() +
+                               " is removed and placed into " + 
+                               "outgoing lane having direction " +
+                               TrafficTesterView.convertToLaneDirection(0));
             outLane[0].add(c);
         }// end if(dir == 0)
         if (dir == 1)
         {//right
             System.out.println("   car#" + 
-                    	        c.getID() +
-                    		    " is removed and placed into " + 
-                    		    "outgoing lane having direction " +
-                    		    TrafficTesterView.convertToLaneDirection(3));
+                                c.getID() +
+                                " is removed and placed into " + 
+                                "outgoing lane having direction " +
+                                TrafficTesterView.convertToLaneDirection(3));
             outLane[3].add(c);
         }//end if(dir == 1)    
         if (dir == -1)
         {//left
             System.out.println("   car#" + 
-                    		    c.getID() +
-                    		    " is removed and placed into " + 
-                		        "outgoing lane having direction " +
-                		        TrafficTesterView.convertToLaneDirection(1));
+                                c.getID() +
+                                " is removed and placed into " + 
+                                "outgoing lane having direction " +
+                                TrafficTesterView.convertToLaneDirection(1));
             outLane[1].add(c);
         }//end if (dir == -1)
     }//end fromNorth()
@@ -81,32 +81,32 @@ public class Intersection {
 
 
     public void fromSouth(int dir, Car c)
-    {//If the car is coming from the South entry point	
+    {//If the car is coming from the South entry point    
         if (dir == 0)
         {//Straight
             System.out.println("   car#" + 
                                c.getID() +
-                    		   " is removed and placed into " + 
-                    		   "outgoing lane having direction " +
-                    		   TrafficTesterView.convertToLaneDirection(2));
+                               " is removed and placed into " + 
+                               "outgoing lane having direction " +
+                               TrafficTesterView.convertToLaneDirection(2));
             outLane[2].add(c);
         }//end if(dir == 0)
         if (dir == 1)
         {//right
             System.out.println("   car#" + 
-                    		   c.getID() +
-                    		   " is removed and placed into " + 
-                    		   "outgoing lane having direction " +
-                    		   TrafficTesterView.convertToLaneDirection(1));
+                               c.getID() +
+                               " is removed and placed into " + 
+                               "outgoing lane having direction " +
+                               TrafficTesterView.convertToLaneDirection(1));
             outLane[1].add(c);
         }//end if(dir == 1)    
         if (dir == -1)
         {//left
             System.out.println("   car#" + 
-                    		  c.getID() +
-                    		  " is removed and placed into " + 
-                    		   "outgoing lane having direction " +
-                    		   TrafficTesterView.convertToLaneDirection(3));
+                              c.getID() +
+                              " is removed and placed into " + 
+                               "outgoing lane having direction " +
+                               TrafficTesterView.convertToLaneDirection(3));
             outLane[3].add(c);
         }//end if(dir == -1)
     }//end fromSouth()
@@ -118,18 +118,18 @@ public class Intersection {
         if (dir == 0)
         {//Straight
             System.out.println("   car#" + 
-                    		   c.getID() +
-                    		   " is removed and placed into " + 
-                    		   "outgoing lane having direction " +
-                    		   TrafficTesterView.convertToLaneDirection(3));
+                               c.getID() +
+                               " is removed and placed into " + 
+                               "outgoing lane having direction " +
+                               TrafficTesterView.convertToLaneDirection(3));
             outLane[3].add(c);
         }//end if(dir == 0)
         if (dir == 1)
         {//right
             System.out.println("   car#" + 
-                    		   c.getID() +
-                    		   " is removed and placed into " + 
-                    		   "outgoing lane having direction " +
+                               c.getID() +
+                               " is removed and placed into " + 
+                               "outgoing lane having direction " +
                                TrafficTesterView.convertToLaneDirection(2));
             outLane[2].add(c);
         }//end if(dir == 1)    
@@ -137,9 +137,9 @@ public class Intersection {
         {//left
             System.out.println("   car#" + 
                                c.getID() +
-                    		   " is removed and placed into " + 
-                    		   "outgoing lane having direction " +
-                    		   TrafficTesterView.convertToLaneDirection(0));
+                               " is removed and placed into " + 
+                               "outgoing lane having direction " +
+                               TrafficTesterView.convertToLaneDirection(0));
             outLane[0].add(c);
         }//end if(dir == -1)
     }//end fromEast()
@@ -151,28 +151,28 @@ public class Intersection {
         if (dir == 0)
         {//Straight
             System.out.println("   car#" + 
-                    	       c.getID() +
-                    		   " is removed and placed into " + 
-                    		   "outgoing lane having direction " +
-                    		   TrafficTesterView.convertToLaneDirection(1));
+                               c.getID() +
+                               " is removed and placed into " + 
+                               "outgoing lane having direction " +
+                               TrafficTesterView.convertToLaneDirection(1));
             outLane[1].add(c);
         }//end if(dir == 0)
         if (dir == 1)
         {//right
             System.out.println("   car#" + 
                                c.getID() +
-                    		   " is removed and placed into " + 
-                    		   "outgoing lane having direction " +
-                    		   TrafficTesterView.convertToLaneDirection(0));
+                               " is removed and placed into " + 
+                               "outgoing lane having direction " +
+                               TrafficTesterView.convertToLaneDirection(0));
             outLane[0].add(c);
         }//end if(dir == 1)    
         if (dir == -1)
         {//left
             System.out.println("   car#" + 
-                    		   c.getID() +
-                    		   " is removed and placed into " + 
-                    		   "outgoing lane having direction " +
-                    		   TrafficTesterView.convertToLaneDirection(2));
+                               c.getID() +
+                               " is removed and placed into " + 
+                               "outgoing lane having direction " +
+                               TrafficTesterView.convertToLaneDirection(2));
             outLane[2].add(c);
         }//end if(dir == -1)
     }//end of fromWest()
@@ -203,7 +203,7 @@ public class Intersection {
                             TrafficTesterView.convertToLaneDirection(i) +
                             " is empty");
             }//end if(c != null) 
-		}//end first for()
+        }//end first for()
 
         // Now all the incoming cars have been moved to outLanes
         // Iterate through the outgoing lanes, printing empty/nonempty
@@ -214,13 +214,13 @@ public class Intersection {
                 System.out.println("  outgoing lane having direction " +
                             TrafficTesterView.convertToLaneDirection(j) +
                             " is empty");
-			} else {
-				System.out.println("  outgoing lane having direction " +
-							TrafficTesterView.convertToLaneDirection(j) +
-							" is nonempty");
-			}//end if( outLane[j].isEmpty() )
-		}//end for(int j=0; j<4; j++)
-	}//end visit()
+            } else {
+                System.out.println("  outgoing lane having direction " +
+                            TrafficTesterView.convertToLaneDirection(j) +
+                            " is nonempty");
+            }//end if( outLane[j].isEmpty() )
+        }//end for(int j=0; j<4; j++)
+    }//end visit()
 
 
 
