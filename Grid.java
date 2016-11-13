@@ -4,7 +4,10 @@
 // **** Grid
 // *****************************************************************************
 // *****************************************************************************
-// Latest Enhancement: Changed indexing to start at 1 for stage_0
+// Latest Enhancement: Added in for loops that will insert fire intersection 
+// when appropriate 
+// Note: must add in arguements for "Lane" constructors, cannot be done until 
+// known how that information can be accessed
 
 import java.util.*;
 import java.io.*;
@@ -22,6 +25,7 @@ public class Grid
     private Intersection i[][];
     private int numRows;
     private int numCols;
+
     
     //Constuctor
     public Grid(int numRows, int numCols) 
@@ -67,7 +71,18 @@ public class Grid
             } // end of for(int colNum=0; colNum<numCols; colNum++)
         } // end of for(int rowNum = 0; rowNum < numRows; rowNum++)
         // The above code constructs lanes and intersections, populates grid */
-        setOutboundBoundaryLanes();  
+
+        //Creation of fire intersections
+        for (int colNum = 0; colNum <= numCols + 1; colNum++){
+            //Insert a fire intersection where row = 0
+            //Insert a fire intersection where row = numRows + 1
+        } //end of for (int colNum = 0; colNum <= numCols + 1; colNum++)
+        for (int rowNum = 0; rowNum <= numRows + 1; rowNum++){
+            //Insert a fire intersection where col = 0
+            //Insert a fire intersection where col = numCols + 1
+        } //end of (for int rowNum = 0; rowNum <= numRows + 1; rowNum++)
+
+
     } // end of Grid(int numRows, int numCols) 
 
     
@@ -220,24 +235,7 @@ public class Grid
 
 
 
-    private void setOutboundBoundaryLanes()
-    {
-        for( int colNum=1; colNum <= numCols; colNum++ )
-        {
-            i[1][colNum].getOutLane(SOUTHWARD).setIsBoundary(); 
-            //bottom row exits SOUTH
-            i[numRows][colNum].getOutLane(NORTHWARD).setIsBoundary(); 
-            //top row exits NORTH
-        } // end of for( int colNum=1; colNum <= numCols; colNum++ )
-        for( int rowNum=1; rowNum <= numRows; rowNum++ )
-        {
-            i[rowNum][1].getOutLane(WESTWARD).setIsBoundary(); 
-            //leftmost col exits WEST
-            i[rowNum][numCols].getOutLane(EASTWARD).setIsBoundary(); 
-            //rightmost col exits WEST
-        } // end of for( int rowNum=1; rowNum <= numRows; rowNum++ )
-    } // end of setOutboundBoundaryLanes()
-
 
 
 }
+
