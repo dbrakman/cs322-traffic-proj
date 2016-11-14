@@ -4,7 +4,8 @@
 // **** Intersection
 // *****************************************************************************
 // *****************************************************************************
-// Latest Enhancement: Fixed comments
+// Latest Enhancement: Fixed order of processing Now: S-E-N-W Was: N-W-S-E. Lanes
+//                     are now checked for capacity before adding cars.
 
 //Intersection Class
 //An intersection will contain 2 Lane[]'s of size 4, for a total of 8 lanes.
@@ -56,7 +57,7 @@ public class Intersection {
                                " is removed and placed into " + 
                                "outgoing lane having direction " +
                                TrafficTesterView.convertToLaneDirection(0));
-            outLane[0].add(c);
+            if(outLane[0].isFull() != true) {outLane[0].add(c)};
         }// end if(dir == 0)
         if (dir == 1)
         {//right
@@ -65,7 +66,7 @@ public class Intersection {
                                 " is removed and placed into " + 
                                 "outgoing lane having direction " +
                                 TrafficTesterView.convertToLaneDirection(3));
-            outLane[3].add(c);
+            if(outLane[3].isFull() != true) {outLane[3].add(c)};
         }//end if(dir == 1)    
         if (dir == -1)
         {//left
@@ -74,7 +75,7 @@ public class Intersection {
                                 " is removed and placed into " + 
                                 "outgoing lane having direction " +
                                 TrafficTesterView.convertToLaneDirection(1));
-            outLane[1].add(c);
+            if(outLane[1].isFull() != true) {outLane[1].add(c)};
         }//end if (dir == -1)
     }//end fromNorth()
 
@@ -89,7 +90,7 @@ public class Intersection {
                                " is removed and placed into " + 
                                "outgoing lane having direction " +
                                TrafficTesterView.convertToLaneDirection(2));
-            outLane[2].add(c);
+            if(outLane[2].isFull() != true) {outLane[2].add(c)};
         }//end if(dir == 0)
         if (dir == 1)
         {//right
@@ -98,7 +99,7 @@ public class Intersection {
                                " is removed and placed into " + 
                                "outgoing lane having direction " +
                                TrafficTesterView.convertToLaneDirection(1));
-            outLane[1].add(c);
+            if(outLane[1].isFull() != true) {outLane[1].add(c)};
         }//end if(dir == 1)    
         if (dir == -1)
         {//left
@@ -107,7 +108,7 @@ public class Intersection {
                               " is removed and placed into " + 
                                "outgoing lane having direction " +
                                TrafficTesterView.convertToLaneDirection(3));
-            outLane[3].add(c);
+            if(outLane[3].isFull() != true) {outLane[3].add(c)};
         }//end if(dir == -1)
     }//end fromSouth()
 
@@ -122,7 +123,7 @@ public class Intersection {
                                " is removed and placed into " + 
                                "outgoing lane having direction " +
                                TrafficTesterView.convertToLaneDirection(3));
-            outLane[3].add(c);
+            if(outLane[3].isFull() != true) {outLane[3].add(c)};
         }//end if(dir == 0)
         if (dir == 1)
         {//right
@@ -131,7 +132,7 @@ public class Intersection {
                                " is removed and placed into " + 
                                "outgoing lane having direction " +
                                TrafficTesterView.convertToLaneDirection(2));
-            outLane[2].add(c);
+            if(outLane[2].isFull() != true) {outLane[2].add(c)};
         }//end if(dir == 1)    
         if (dir == -1)
         {//left
@@ -140,7 +141,7 @@ public class Intersection {
                                " is removed and placed into " + 
                                "outgoing lane having direction " +
                                TrafficTesterView.convertToLaneDirection(0));
-            outLane[0].add(c);
+            if(outLane[0].isFull() != true) {outLane[0].add(c)};
         }//end if(dir == -1)
     }//end fromEast()
 
@@ -155,7 +156,8 @@ public class Intersection {
                                " is removed and placed into " + 
                                "outgoing lane having direction " +
                                TrafficTesterView.convertToLaneDirection(1));
-            outLane[1].add(c);
+            if(outLane[1].isFull() != true){outLane[1].add(c)};
+            
         }//end if(dir == 0)
         if (dir == 1)
         {//right
@@ -164,7 +166,7 @@ public class Intersection {
                                " is removed and placed into " + 
                                "outgoing lane having direction " +
                                TrafficTesterView.convertToLaneDirection(0));
-            outLane[0].add(c);
+            if(outLane[0].isFull() != true) {outLane[0].add(c)};
         }//end if(dir == 1)    
         if (dir == -1)
         {//left
@@ -173,7 +175,7 @@ public class Intersection {
                                " is removed and placed into " + 
                                "outgoing lane having direction " +
                                TrafficTesterView.convertToLaneDirection(2));
-            outLane[2].add(c);
+          if(outLane[2].isFull() != true) {outLane[2].add(c)};
         }//end if(dir == -1)
     }//end of fromWest()
 
@@ -184,6 +186,16 @@ public class Intersection {
     // Print the empty/nonempty status of incoming lanes, and when cars moved
     public void visit()
     {
+    	 /*Creation of fire intersections
+        for (int colNum = 0; colNum <= numCols + 1; colNum++)
+        {
+        Destroy the cars in these fire intersections;
+        } //end of for (int colNum = 0; colNum <= numCols + 1; colNum++)
+        for (int rowNum = 0; rowNum <= numRows + 1; rowNum++){
+             Destroy the cars in these fire intersections;
+        } //end of (for int rowNum = 0; rowNum <= numRows + 1; rowNum++)
+*///implementation of fire intersections
+
         for (int i = 0; i <= 3; i++)
         { //Iterate through the 4 cardinal directions
             Car c = inLane[i].get();
@@ -194,10 +206,10 @@ public class Intersection {
                             " is nonempty and");
                 int dir = c.getCurrentDirection();
                 c.update();
-                if(i == 0){ fromNorth(dir, c); }
-                if(i == 1){ fromWest(dir, c); }
-                if(i == 2){ fromSouth(dir, c); }
-                if(i == 3){ fromEast(dir, c); }
+                if(i == 0){ fromSouth(dir, c); }
+                if(i == 1){ fromEast(dir, c); }
+                if(i == 2){ fromNorth(dir, c); }
+                if(i == 3){ fromWest(dir, c); }
             } else {
                 System.out.println("  incoming lane having direction " +
                             TrafficTesterView.convertToLaneDirection(i) +
