@@ -73,13 +73,20 @@ public class Grid
         // The above code constructs lanes and intersections, populates grid */
 
         //Creation of fire intersections
-        for (int colNum = 0; colNum <= numCols + 1; colNum++){
-            //Insert a fire intersection where row = 0
-            //Insert a fire intersection where row = numRows + 1
+        for (int colNum = 1; colNum <= numCols; colNum++){
+            //Insert a fire intersection at i[0][colNum], only needs 1 inLane
+            //corresponding to the southward outlane of i[1][colNum]
+            
+            //Insert a fire intersection at i[numRows + 1][colNum], only needs 
+            //inLane corresponding to the northward outLane of 
+            //i[numRows][colNum]
         } //end of for (int colNum = 0; colNum <= numCols + 1; colNum++)
-        for (int rowNum = 0; rowNum <= numRows + 1; rowNum++){
-            //Insert a fire intersection where col = 0
-            //Insert a fire intersection where col = numCols + 1
+        for (int rowNum = 1; rowNum <= numRows; rowNum++){
+            //Insert a fire intersection at i[rowNum][0], only needs 1 inLane
+            //corresponding to the wetsward outLane of i[rowNum][1]
+            
+            //Insert a fire intersection at i[rowNum][numCols + 1], only needs
+            //1 inLane corresponding to the eastward outLane of i[rowNum][numCols]
         } //end of (for int rowNum = 0; rowNum <= numRows + 1; rowNum++)
 
 
