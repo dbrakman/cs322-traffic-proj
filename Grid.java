@@ -86,7 +86,8 @@ public class Grid
             //corresponding to the wetsward outLane of i[rowNum][1]
             
             //Insert a fire intersection at i[rowNum][numCols + 1], only needs
-            //1 inLane corresponding to the eastward outLane of i[rowNum][numCols]
+            //1 inLane corresponding to the eastward outLane of 
+            //i[rowNum][numCols]
         } //end of (for int rowNum = 0; rowNum <= numRows + 1; rowNum++)
 
 
