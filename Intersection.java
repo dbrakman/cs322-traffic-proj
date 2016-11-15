@@ -57,7 +57,7 @@ public class Intersection {
                                " is removed and placed into " + 
                                "outgoing lane having direction " +
                                TrafficTesterView.convertToLaneDirection(0));
-            if(outLane[0].isFull() != true) {outLane[0].add(c)};
+            if(outLane[0].isFull() != true) {outLane[0].add(c);}
         }// end if(dir == 0)
         if (dir == 1)
         {//right
@@ -66,7 +66,7 @@ public class Intersection {
                                 " is removed and placed into " + 
                                 "outgoing lane having direction " +
                                 TrafficTesterView.convertToLaneDirection(3));
-            if(outLane[3].isFull() != true) {outLane[3].add(c)};
+            if(outLane[3].isFull() != true) {outLane[3].add(c);}
         }//end if(dir == 1)    
         if (dir == -1)
         {//left
@@ -75,7 +75,7 @@ public class Intersection {
                                 " is removed and placed into " + 
                                 "outgoing lane having direction " +
                                 TrafficTesterView.convertToLaneDirection(1));
-            if(outLane[1].isFull() != true) {outLane[1].add(c)};
+            if(outLane[1].isFull() != true) {outLane[1].add(c);}
         }//end if (dir == -1)
     }//end fromNorth()
 
@@ -90,7 +90,7 @@ public class Intersection {
                                " is removed and placed into " + 
                                "outgoing lane having direction " +
                                TrafficTesterView.convertToLaneDirection(2));
-            if(outLane[2].isFull() != true) {outLane[2].add(c)};
+            if(outLane[2].isFull() != true) {outLane[2].add(c);}
         }//end if(dir == 0)
         if (dir == 1)
         {//right
@@ -99,7 +99,7 @@ public class Intersection {
                                " is removed and placed into " + 
                                "outgoing lane having direction " +
                                TrafficTesterView.convertToLaneDirection(1));
-            if(outLane[1].isFull() != true) {outLane[1].add(c)};
+            if(outLane[1].isFull() != true) {outLane[1].add(c);}
         }//end if(dir == 1)    
         if (dir == -1)
         {//left
@@ -108,7 +108,7 @@ public class Intersection {
                               " is removed and placed into " + 
                                "outgoing lane having direction " +
                                TrafficTesterView.convertToLaneDirection(3));
-            if(outLane[3].isFull() != true) {outLane[3].add(c)};
+            if(outLane[3].isFull() != true) {outLane[3].add(c);}
         }//end if(dir == -1)
     }//end fromSouth()
 
@@ -123,7 +123,7 @@ public class Intersection {
                                " is removed and placed into " + 
                                "outgoing lane having direction " +
                                TrafficTesterView.convertToLaneDirection(3));
-            if(outLane[3].isFull() != true) {outLane[3].add(c)};
+            if(outLane[3].isFull() != true) {outLane[3].add(c);}
         }//end if(dir == 0)
         if (dir == 1)
         {//right
@@ -132,7 +132,7 @@ public class Intersection {
                                " is removed and placed into " + 
                                "outgoing lane having direction " +
                                TrafficTesterView.convertToLaneDirection(2));
-            if(outLane[2].isFull() != true) {outLane[2].add(c)};
+            if(outLane[2].isFull() != true) {outLane[2].add(c);}
         }//end if(dir == 1)    
         if (dir == -1)
         {//left
@@ -141,7 +141,7 @@ public class Intersection {
                                " is removed and placed into " + 
                                "outgoing lane having direction " +
                                TrafficTesterView.convertToLaneDirection(0));
-            if(outLane[0].isFull() != true) {outLane[0].add(c)};
+            if(outLane[0].isFull() != true) {outLane[0].add(c);}
         }//end if(dir == -1)
     }//end fromEast()
 
@@ -156,7 +156,7 @@ public class Intersection {
                                " is removed and placed into " + 
                                "outgoing lane having direction " +
                                TrafficTesterView.convertToLaneDirection(1));
-            if(outLane[1].isFull() != true){outLane[1].add(c)};
+            if(outLane[1].isFull() != true){outLane[1].add(c);}
             
         }//end if(dir == 0)
         if (dir == 1)
@@ -166,7 +166,7 @@ public class Intersection {
                                " is removed and placed into " + 
                                "outgoing lane having direction " +
                                TrafficTesterView.convertToLaneDirection(0));
-            if(outLane[0].isFull() != true) {outLane[0].add(c)};
+            if(outLane[0].isFull() != true) {outLane[0].add(c);}
         }//end if(dir == 1)    
         if (dir == -1)
         {//left
@@ -175,7 +175,7 @@ public class Intersection {
                                " is removed and placed into " + 
                                "outgoing lane having direction " +
                                TrafficTesterView.convertToLaneDirection(2));
-          if(outLane[2].isFull() != true) {outLane[2].add(c)};
+          if(outLane[2].isFull() != true) {outLane[2].add(c);}
         }//end if(dir == -1)
     }//end of fromWest()
 

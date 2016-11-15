@@ -6,8 +6,6 @@
 // *****************************************************************************
 // Latest Enhancement: Added in for loops that will insert fire intersection 
 // when appropriate 
-// Note: must add in arguements for "Lane" constructors, cannot be done until 
-// known how that information can be accessed
 
 import java.util.*;
 import java.io.*;
@@ -25,13 +23,18 @@ public class Grid
     private Intersection i[][];
     private int numRows;
     private int numCols;
+    private int laneCapacity;
+    private int minTimeToTravelLane;
 
     
     //Constuctor
-    public Grid(int numRows, int numCols, int laneCapacity, int minTimeToTravel) 
+    public Grid(int numRows, int numCols, int laneCapacity,
+                int minTimeToTravelLane) 
     {
         this.numRows = numRows;
         this.numCols = numCols;
+        this.laneCapacity = laneCapacity;
+        this.minTimeToTravelLane = minTimeToTravelLane;
         // Allocate space for numRows*numCols intersections
         // In nested for loops, construct lanes and intersections appropriately
         i = new Intersection[numRows + 1][numCols + 1];
@@ -132,7 +135,8 @@ public class Grid
             } else if(cardinalDir==WESTWARD){
                 outLanes[WESTWARD] = i[rowNum][colNum-1].getInLane(SOUTHWARD);
             } else {
-                outLanes[cardinalDir] = new Lane(laneCapacity, minTimeToTravel);
+                outLanes[cardinalDir] = new Lane(laneCapacity,
+                                                 minTimeToTravelLane);
             } // end of if(cardinalDir==SOUTHWARD)
         } // end of for(int cardinalDir=0; cardinalDir<4; cardinalDir++)
         for(int cardinalDir=0; cardinalDir<4; cardinalDir++)
@@ -143,7 +147,8 @@ public class Grid
             } else if(cardinalDir==EASTWARD){
                 inLanes[EASTWARD] = i[rowNum][colNum-1].getOutLane(EASTWARD);
             } else {
-                inLanes[cardinalDir] = new Lane(laneCapacity, minTimeToTravel);
+                inLanes[cardinalDir] = new Lane(laneCapacity, 
+                                                minTimeToTravelLane);
             } // end of if(cardinalDir==NORTHWARD)
         } // end of for(int cardinalDir=0; cardinalDir<4; cardinalDir++)
         i[rowNum][colNum] = new Intersection(inLanes,outLanes);
@@ -162,7 +167,8 @@ public class Grid
             if(cardinalDir==SOUTHWARD){
                 outLanes[SOUTHWARD] = i[rowNum-1][colNum].getInLane(SOUTHWARD);
             } else {
-                outLanes[cardinalDir] = new Lane(laneCapacity, minTimeToTravel);
+                outLanes[cardinalDir] = new Lane(laneCapacity, 
+                                                 minTimeToTravelLane);
             } // end of if(cardinalDir==SOUTHWARD)
         } // end of for(int cardinalDir=0; cardinalDir<4; cardinalDir++)
         for(int cardinalDir=0; cardinalDir<4; cardinalDir++)
@@ -170,7 +176,8 @@ public class Grid
             if(cardinalDir==NORTHWARD){
                 inLanes[NORTHWARD] = i[rowNum-1][colNum].getOutLane(NORTHWARD);
             } else {
-                inLanes[cardinalDir] = new Lane(laneCapacity, minTimeToTravel);
+                inLanes[cardinalDir] = new Lane(laneCapacity, 
+                                                minTimeToTravelLane);
             } // end of if(cardinalDir==NORTHWARD)
         } // end of for(int cardinalDir=0; cardinalDir<4; cardinalDir++)
         i[rowNum][colNum] = new Intersection(inLanes,outLanes);
@@ -191,7 +198,8 @@ public class Grid
                 outLanes[WESTWARD] = i[rowNum][colNum-1].getInLane(WESTWARD);
             } else {
                 // The other 3 outbound lanes are new to this intersection
-                outLanes[cardinalDir] = new Lane(laneCapacity, minTimeToTravel);
+                outLanes[cardinalDir] = new Lane(laneCapacity, 
+                                                 minTimeToTravelLane);
             } // end of if(cardinalDir==WESTWARD)
         } // end of for(int cardinalDir=0; cardinalDir<4; cardinalDir++)
         for(int cardinalDir=0; cardinalDir<4; cardinalDir++)
@@ -203,7 +211,8 @@ public class Grid
             {
                 inLanes[EASTWARD] = i[rowNum][colNum-1].getOutLane(EASTWARD);
             } else {
-                inLanes[cardinalDir] = new Lane(laneCapacity, minTimeToTravel);
+                inLanes[cardinalDir] = new Lane(laneCapacity, 
+                                                minTimeToTravelLane);
             } // end of if(cardinalDir==EASTWARD)
         } // end of for(int cardinalDir=0; cardinalDir<4; cardinalDir++)
         i[rowNum][colNum] = new Intersection(inLanes,outLanes);
@@ -218,37 +227,36 @@ public class Grid
         for( int cardinalDir=0; cardinalDir<4; cardinalDir++ )
         {
             //Generate 4 new lane pairs for Intersection [1,1]
-            inLanes[cardinalDir] = new Lane(laneCapacity, minTimeToTravel);
-            outLanes[cardinalDir] = new Lane(laneCapacity, minTimeToTravel);
+            inLanes[cardinalDir] = new Lane(laneCapacity, minTimeToTravelLane);
+            outLanes[cardinalDir] = new Lane(laneCapacity, minTimeToTravelLane);
         } // end of for( int cardinalDir=0; cardinalDir<4; cardinalDir++ )
         i[rowNum][colNum] = new Intersection(inLanes,outLanes);
     } // end of shareNoLanes(int rowNum, int colNum)
 
+
+
     private void setBoundaryLanes(){
         //Set boundary lanes for the bottom row
-        for (int colNum = 1; i <= numCols; colNum++){
+        for (int colNum = 1; colNum <= numCols; colNum++){
             (i[1][colNum].getOutLane(0)).setIsBoundary();
-        } //end for (int colNum = 1; i <= numCols; colNum++)
+        } //end for (int colNum = 1; colNum <= numCols; colNum++)
 
         //Set boundary lanes for the top row
-        for (int colNum = 1; i <= numCols; colNum++){
+        for (int colNum = 1; colNum <= numCols; colNum++){
             (i[numRows][colNum].getOutLane(2)).setIsBoundary();
-        } //end for (int colNum = 1; i <= numCols; colNum++)
+        } //end for (int colNum = 1; colNum <= numCols; colNum++)
 
         //Set boundary lanes for the west side
-        for (int rowNum = 1; i <= numRows; rowNum++){
+        for (int rowNum = 1; rowNum <= numRows; rowNum++){
             (i[rowNum][1].getOutLane(3)).setIsBoundary();
-        } // end for (int rowNum = 1; i <= numRows; rowNum++)
+        } // end for (int rowNum = 1; rowNum <= numRows; rowNum++)
 
         //Set boundary lanes for the east side
-        for (int rowNum = 1; i <= numRows; rowNum++){
-            (i[rowNum][numCols].getOutLane(2)).setIsBoundary();
-        } // end for (int rowNum = 1; i <= numRows; rowNum++)
+        for (int rowNum = 1; rowNum <= numRows; rowNum++){
+            (i[rowNum][numCols].getOutLane(1)).setIsBoundary();
+        } // end for (int rowNum = 1; rowNum <= numRows; rowNum++)
 
     }
-    }
-
-
 
 
 

@@ -21,8 +21,8 @@ import java.util.HashMap;
 public class Lane {
     //**************Instance Variables**************
     private Queue<Car> q; // Stores the cars in the lane
-    private HashMap<Car,int> timesInQueue;  // Stores the length of time each
-                                            // car spends in the lane
+    private HashMap<Car,Integer> timesInQueue;  // Stores the length of time 
+                                            // each car spends in the lane
     private int capacity;
     private int minTimeToTraverse;
     public boolean boundary;
@@ -31,7 +31,7 @@ public class Lane {
     public Lane(int capacity, int minTimeToTraverse)
     {
         q = new LinkedList<Car>();
-        timesInQueue = new HashMap<Car,int>();
+        timesInQueue = new HashMap<Car,Integer>();
         this.capacity = capacity;
         this.minTimeToTraverse = minTimeToTraverse;
     } // end of constructor
@@ -64,7 +64,7 @@ public class Lane {
     public Car peek()
     {
         Car c = q.peek();
-        if(timesInQueue.get(c) >= minTimeToTraverse)
+        if( c != null && timesInQueue.get(c) >= minTimeToTraverse)
         {
             return c;
         } else {
@@ -82,7 +82,7 @@ public class Lane {
         if(this.isFull())
         {
             System.out.println("Illegal attempt to add to a full lane");
-            return;
+            return true;
         } // end of if(q.size() >= capacity)
 
         if(this.isBoundary())
@@ -109,10 +109,18 @@ public class Lane {
     {
         return q.size() >= capacity;
     } // end of isFull()
+
+
     
     public void setIsBoundary() {
         this.boundary = true;
-    }
+    } // end of setIsBoundary()
+
+
+
+    public boolean isBoundary() {
+        return this.boundary;
+    } // end of isBoundary()
 
 
 
