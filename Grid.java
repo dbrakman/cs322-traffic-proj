@@ -28,7 +28,7 @@ public class Grid
 
     
     //Constuctor
-    public Grid(int numRows, int numCols) 
+    public Grid(int numRows, int numCols, int laneCapacity, int minTimeToTravel) 
     {
         this.numRows = numRows;
         this.numCols = numCols;
@@ -132,7 +132,7 @@ public class Grid
             } else if(cardinalDir==WESTWARD){
                 outLanes[WESTWARD] = i[rowNum][colNum-1].getInLane(SOUTHWARD);
             } else {
-                outLanes[cardinalDir] = new Lane();
+                outLanes[cardinalDir] = new Lane(laneCapacity, minTimeToTravel);
             } // end of if(cardinalDir==SOUTHWARD)
         } // end of for(int cardinalDir=0; cardinalDir<4; cardinalDir++)
         for(int cardinalDir=0; cardinalDir<4; cardinalDir++)
@@ -143,7 +143,7 @@ public class Grid
             } else if(cardinalDir==EASTWARD){
                 inLanes[EASTWARD] = i[rowNum][colNum-1].getOutLane(EASTWARD);
             } else {
-                inLanes[cardinalDir] = new Lane();
+                inLanes[cardinalDir] = new Lane(laneCapacity, minTimeToTravel);
             } // end of if(cardinalDir==NORTHWARD)
         } // end of for(int cardinalDir=0; cardinalDir<4; cardinalDir++)
         i[rowNum][colNum] = new Intersection(inLanes,outLanes);
@@ -162,7 +162,7 @@ public class Grid
             if(cardinalDir==SOUTHWARD){
                 outLanes[SOUTHWARD] = i[rowNum-1][colNum].getInLane(SOUTHWARD);
             } else {
-                outLanes[cardinalDir] = new Lane();
+                outLanes[cardinalDir] = new Lane(laneCapacity, minTimeToTravel);
             } // end of if(cardinalDir==SOUTHWARD)
         } // end of for(int cardinalDir=0; cardinalDir<4; cardinalDir++)
         for(int cardinalDir=0; cardinalDir<4; cardinalDir++)
@@ -170,7 +170,7 @@ public class Grid
             if(cardinalDir==NORTHWARD){
                 inLanes[NORTHWARD] = i[rowNum-1][colNum].getOutLane(NORTHWARD);
             } else {
-                inLanes[cardinalDir] = new Lane();
+                inLanes[cardinalDir] = new Lane(laneCapacity, minTimeToTravel);
             } // end of if(cardinalDir==NORTHWARD)
         } // end of for(int cardinalDir=0; cardinalDir<4; cardinalDir++)
         i[rowNum][colNum] = new Intersection(inLanes,outLanes);
@@ -191,7 +191,7 @@ public class Grid
                 outLanes[WESTWARD] = i[rowNum][colNum-1].getInLane(WESTWARD);
             } else {
                 // The other 3 outbound lanes are new to this intersection
-                outLanes[cardinalDir] = new Lane();
+                outLanes[cardinalDir] = new Lane(laneCapacity, minTimeToTravel);
             } // end of if(cardinalDir==WESTWARD)
         } // end of for(int cardinalDir=0; cardinalDir<4; cardinalDir++)
         for(int cardinalDir=0; cardinalDir<4; cardinalDir++)
@@ -203,7 +203,7 @@ public class Grid
             {
                 inLanes[EASTWARD] = i[rowNum][colNum-1].getOutLane(EASTWARD);
             } else {
-                inLanes[cardinalDir] = new Lane();
+                inLanes[cardinalDir] = new Lane(laneCapacity, minTimeToTravel);
             } // end of if(cardinalDir==EASTWARD)
         } // end of for(int cardinalDir=0; cardinalDir<4; cardinalDir++)
         i[rowNum][colNum] = new Intersection(inLanes,outLanes);
@@ -218,8 +218,8 @@ public class Grid
         for( int cardinalDir=0; cardinalDir<4; cardinalDir++ )
         {
             //Generate 4 new lane pairs for Intersection [1,1]
-            inLanes[cardinalDir] = new Lane();
-            outLanes[cardinalDir] = new Lane();
+            inLanes[cardinalDir] = new Lane(laneCapacity, minTimeToTravel);
+            outLanes[cardinalDir] = new Lane(laneCapacity, minTimeToTravel);
         } // end of for( int cardinalDir=0; cardinalDir<4; cardinalDir++ )
         i[rowNum][colNum] = new Intersection(inLanes,outLanes);
     } // end of shareNoLanes(int rowNum, int colNum)
