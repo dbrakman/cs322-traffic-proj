@@ -25,6 +25,7 @@ public class Lane {
                                             // car spends in the lane
     private int capacity;
     private int minTimeToTraverse;
+    public boolean boundary;
 
     //**************Constructor**************
     public Lane(int capacity, int minTimeToTraverse)
@@ -83,6 +84,14 @@ public class Lane {
             System.out.println("Illegal attempt to add to a full lane");
             return;
         } // end of if(q.size() >= capacity)
+
+        if(this.isBoundary())
+        {
+            System.out.println("Car" + c.getID() + "has left the grid");
+            // Future enhancement: update stats for the car leaving 
+            q.remove(c);
+            return true;
+        } // end of if(this.isBoundary())
         timesInQueue.put(c,0);
         return q.add(c);
     } // end of add(Car c)
@@ -100,6 +109,10 @@ public class Lane {
     {
         return q.size() >= capacity;
     } // end of isFull()
+    
+    public void setIsBoundary() {
+        this.boundary = true;
+    }
 
 
 
