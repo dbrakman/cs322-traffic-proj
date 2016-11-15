@@ -38,7 +38,8 @@ public class TrafficTesterModel{
     public void run(){
         //System.out.println("In TrafficTesterModel: running simulation");
         for(t = 1; t <= lengthOfSimulation; t++){
-            System.out.println("During timestep " + t +":");
+            System.out.println("********************During timestep: "
+                               + t +"********************");
             g.update();
         }// End of for(t < lengthOfSimulation; t++)
         //g.update();
