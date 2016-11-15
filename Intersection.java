@@ -212,10 +212,10 @@ public class Intersection {
                     System.out.println(" and");
                     int dir = c.getCurrentDirection();
                     c.update();
-                    if(i == 0){ fromNorth(dir, c); }
-                    if(i == 1){ fromWest(dir, c); }
-                    if(i == 2){ fromSouth(dir, c); }
-                    if(i == 3){ fromEast(dir, c); }
+                    if(i == 0){ fromSouth(dir, c); }
+                    if(i == 1){ fromEast(dir, c); }
+                    if(i == 2){ fromNorth(dir, c); }
+                    if(i == 3){ fromWest(dir, c); }
                 } else {
                     System.out.println("");
                 } // end if (c != null )
