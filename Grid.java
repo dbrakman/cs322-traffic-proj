@@ -133,7 +133,7 @@ public class Grid
             if(cardinalDir==SOUTHWARD){
                 outLanes[SOUTHWARD] = i[rowNum-1][colNum].getInLane(SOUTHWARD);
             } else if(cardinalDir==WESTWARD){
-                outLanes[WESTWARD] = i[rowNum][colNum-1].getInLane(SOUTHWARD);
+                outLanes[WESTWARD] = i[rowNum][colNum-1].getInLane(WESTWARD);
             } else {
                 outLanes[cardinalDir] = new Lane(laneCapacity,
                                                  minTimeToTravelLane);

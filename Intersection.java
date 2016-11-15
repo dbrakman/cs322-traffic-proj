@@ -197,16 +197,16 @@ public class Intersection {
 
         for (int i = 0; i <= 3; i++)
         { //Iterate through the 4 cardinal directions
-            if( inLane[i].isEmpty() )
+            if( inLane[(i+2)%4].isEmpty() )
             {
                 System.out.println("  incoming lane having direction " +
-                            getProcessingOrderDirection(i) +
+                            TrafficTesterView.convertToLaneDirection((i+2)%4) +
                             " is empty");
             } else {
                 System.out.print("  incoming lane having direction " +
-                            getProcessingOrderDirection(i) +
+                            TrafficTesterView.convertToLaneDirection((i+2)%4) +
                             " is nonempty");
-                Car c = inLane[i].get();
+                Car c = inLane[(i+2)%4].get();
                 if (c != null)
                 {
                     System.out.println(" and");
