@@ -200,11 +200,11 @@ public class Intersection {
             if( inLane[i].isEmpty() )
             {
                 System.out.println("  incoming lane having direction " +
-                            TrafficTesterView.convertToLaneDirection(i) +
+                            getProcessingOrderDirection(i) +
                             " is empty");
             } else {
                 System.out.print("  incoming lane having direction " +
-                            TrafficTesterView.convertToLaneDirection(i) +
+                            getProcessingOrderDirection(i) +
                             " is nonempty");
                 Car c = inLane[i].get();
                 if (c != null)
@@ -238,6 +238,17 @@ public class Intersection {
             }//end if( outLane[j].isEmpty() )
         }//end for(int j=0; j<4; j++)
     }//end visit()
+
+
+
+    private String getProcessingOrderDirection(int i)
+    {
+        if( i == 0 ){ return "NORTHWARD"; }
+        if( i == 1 ){ return "WESTWARD"; }
+        if( i == 2 ){ return "SOUTHWARD"; }
+        if( i == 3 ){ return "EASTWARD"; }
+        return "Invalid Direction Code";
+    }
 
 
 
