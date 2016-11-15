@@ -206,10 +206,10 @@ public class Intersection {
                             " is nonempty and");
                 int dir = c.getCurrentDirection();
                 c.update();
-                if(i == 0){ fromSouth(dir, c); }
-                if(i == 1){ fromEast(dir, c); }
-                if(i == 2){ fromNorth(dir, c); }
-                if(i == 3){ fromWest(dir, c); }
+                if(i == 0){ fromNorth(dir, c); }
+                if(i == 1){ fromWest(dir, c); }
+                if(i == 2){ fromSouth(dir, c); }
+                if(i == 3){ fromEast(dir, c); }
             } else {
                 System.out.println("  incoming lane having direction " +
                             TrafficTesterView.convertToLaneDirection(i) +
