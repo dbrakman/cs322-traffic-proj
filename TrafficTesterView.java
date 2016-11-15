@@ -119,7 +119,7 @@ public class TrafficTesterView {
     //        "TesterModel");
     TrafficTesterModel sim = new TrafficTesterModel(
             numIntersectionsInOneDirection,numIntersectionsInOneDirection,
-            carParameters, lengthOfSimulation, maxLaneCapacity, minTimeToTravelLane);
+            carParameters, lengthOfSimulation);
     //System.out.println("In TrafficTesterView: running the TrafficTesterModel");
     sim.run();
 
