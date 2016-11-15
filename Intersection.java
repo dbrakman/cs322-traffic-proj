@@ -4,8 +4,7 @@
 // **** Intersection
 // *****************************************************************************
 // *****************************************************************************
-// Latest Enhancement: Fixed order of processing Now: S-E-N-W Was: N-W-S-E. Lanes
-//                     are now checked for capacity before adding cars.
+// Latest Enhancement: Corrected print statements
 
 //Intersection Class
 //An intersection will contain 2 Lane[]'s of size 4, for a total of 8 lanes.
@@ -198,23 +197,29 @@ public class Intersection {
 
         for (int i = 0; i <= 3; i++)
         { //Iterate through the 4 cardinal directions
-            Car c = inLane[i].get();
-            if (c != null)
+            if( inLane[i].isEmpty() )
             {
                 System.out.println("  incoming lane having direction " +
                             TrafficTesterView.convertToLaneDirection(i) +
-                            " is nonempty and");
-                int dir = c.getCurrentDirection();
-                c.update();
-                if(i == 0){ fromNorth(dir, c); }
-                if(i == 1){ fromWest(dir, c); }
-                if(i == 2){ fromSouth(dir, c); }
-                if(i == 3){ fromEast(dir, c); }
-            } else {
-                System.out.println("  incoming lane having direction " +
-                            TrafficTesterView.convertToLaneDirection(i) +
                             " is empty");
-            }//end if(c != null) 
+            } else {
+                System.out.print("  incoming lane having direction " +
+                            TrafficTesterView.convertToLaneDirection(i) +
+                            " is nonempty");
+                Car c = inLane[i].get();
+                if (c != null)
+                {
+                    System.out.println(" and");
+                    int dir = c.getCurrentDirection();
+                    c.update();
+                    if(i == 0){ fromNorth(dir, c); }
+                    if(i == 1){ fromWest(dir, c); }
+                    if(i == 2){ fromSouth(dir, c); }
+                    if(i == 3){ fromEast(dir, c); }
+                } else {
+                    System.out.println("");
+                } // end if (c != null )
+            }//end if( inLane[i].isEmpty() )
         }//end first for()
 
         // Now all the incoming cars have been moved to outLanes
