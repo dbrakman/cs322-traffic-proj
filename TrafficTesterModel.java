@@ -12,11 +12,12 @@ import java.util.ArrayList;
 
 public class TrafficTesterModel{
     Grid g;
-    //int t;
+    int t;
+    int lengthOfSimulation;
 
     //************Constructor************
     public TrafficTesterModel(int numRows, int numCols, 
-    ArrayList< ArrayList<Integer> > carParameters){
+    ArrayList< ArrayList<Integer> > carParameters, int lengthOfSim){
         //System.out.println("In TrafficTesterModel(): ");
         //********Creating a new grid********
         //System.out.println("  Constructing a Grid...");
@@ -26,6 +27,8 @@ public class TrafficTesterModel{
         //System.out.println("  Telling the grid to make and insert cars...");
         g.insertCars(carParameters);
 
+        lengthOfSimulation = lengthOfSim;
+
         //System.out.println("Exiting TrafficTesterModel()");
     }// End of TrafficTesterModel constructor 
 
@@ -34,7 +37,11 @@ public class TrafficTesterModel{
     //Calls update() on the Grid, causing the intersections to be looked at
     public void run(){
         //System.out.println("In TrafficTesterModel: running simulation");
-        g.update();
+        for(t = 1; t <= lengthOfSimulation; t++){
+            System.out.println("During timestep " + t +":");
+            g.update();
+        }// End of for(t < lengthOfSimulation; t++)
+        //g.update();
     }// End of run method
 
 
