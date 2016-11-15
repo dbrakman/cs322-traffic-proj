@@ -18,11 +18,11 @@ public class TrafficTesterModel{
     //************Constructor************
     public TrafficTesterModel(int numRows, int numCols, 
     ArrayList< ArrayList<Integer> > carParameters, int lengthOfSim, 
-                             int laneCapacity, int maxTimeToTravel){
+                             int laneCapacity, int minTimeToTravel){
         //System.out.println("In TrafficTesterModel(): ");
         //********Creating a new grid********
         //System.out.println("  Constructing a Grid...");
-        g = new Grid(numRows, numCols, laneCapacity, maxTimeToTravel);
+        g = new Grid(numRows, numCols, laneCapacity, minTimeToTravel);
 
         //********Teling the grid to make and insert cars********
         //System.out.println("  Telling the grid to make and insert cars...");
