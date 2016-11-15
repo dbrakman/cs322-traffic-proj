@@ -25,6 +25,7 @@ public class Lane {
                                             // car spends in the lane
     private int capacity;
     private int minTimeToTraverse;
+    public boolean boundary;
 
     //**************Constructor**************
     public Lane(int capacity, int minTimeToTraverse)
@@ -100,6 +101,10 @@ public class Lane {
     {
         return q.size() >= capacity;
     } // end of isFull()
+    
+    public void setIsBoundary() {
+        this.boundary = true;
+    }
 
 
 
