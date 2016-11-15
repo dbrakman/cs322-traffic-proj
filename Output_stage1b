@@ -1,0 +1,1052 @@
+Script started on Mon Nov 14 22:14:38 2016
+?1034h0;david@mactop: ~/Documents/UR/y3s1/cs322/proj/code/cs322-traffic-projdavid@mactop:~/Documents/UR/y3s1/cs322/proj/code/cs322-traffic-proj$ cat unix_commands_for_stage1b
+# How to use the current file:
+#   Step 1: Copy and paste current file into a file with the name
+#	      unix_commands_for_nov2
+#	    and save the resulting file in the iMac's Desktop directory
+#   Step 2: Preserve that file using the Unix command:
+#	      cp -p unix_commands_for_nov2 save_unix_commands_for_nov2
+#   Step 3: Edit the file unix_commands_for_nov2 replacing File2, File3, etc.,
+#	    with your choice of class names; see NOTE1 below to understand
+#	    what this step means as File2, File 3, etc.
+#   Step 4: Edit the file unix_commands_for_nov2 replacing "data1" with
+#	    your choice of "data2", etc., IF you wish to make such a change;
+#	    see NOTE2 below for what this step means as "data1", etc.
+#   Step 5: Change the "mode" of the resulting file so the file becomes
+#	    executable under the Unix command interpreter, via the
+#	    following Unix command:
+#	      chmod +x unix_commands_for_nov2
+#   Step 6: Try an experiment using the resulting file:
+#	      ./unix_commands_for_nov2
+#	    Scroll up and down the Unix window to see if that experiment
+#	    was as successful as you wanted it to be; if it is,
+#	    go to Step 7.  (Otherwise go back to Step 3 or Step 4.)
+#   Step 7: Do the following Unix to obtain a demo file:
+#	      script
+#	      cat unix_commands_for_nov2
+#	      ./unix_commands_for_nov2
+#	      exit
+#	      col -b < typescript > Demo_for_nov2_2016
+#   Step 8: Submit all your *java files and all your *data* files and also
+#	    the file Demo_for_nov2_2016 to the folder for you team for
+#	    the top-level logic project due on Friday, where you submit
+#	    all those files during the lab on Wed, Nov 2, to show the
+#	    current state of your iterative enhancement.
+#!/bin/csh
+echo "<UNIX-PROMPT> pwd"
+pwd
+echo "<UNIX-PROMPT> ls -tl *java"
+ls -tl *java
+echo "<UNIX-PROMPT> wc *java"
+wc *java
+echo "<UNIX-PROMPT> cat TrafficTesterView.java"
+cat TrafficTesterView.java
+# NOTE1 	    On Wed, Nov 2, replace File2, File3, etc., by appropriate
+#		    Java class names to demonstrate the current stage of
+#		    your iterative enhancement.  Use as many or as few such
+#		    classes as you decide would best demonstrate the
+#		    current stage of your iterative enhancement.
+echo "<UNIX-PROMPT> cat TrafficTesterModel.java"
+cat TrafficTesterModel.java
+echo "<UNIX-PROMPT> cat Grid.java"
+cat Grid.java
+echo "<UNIX-PROMPT> cat Intersection.java"
+cat Intersection.java
+echo "<UNIX-PROMPT> cat Lane.java"
+cat Lane.java
+echo "<UNIX-PROMPT> cat Car.java"
+cat Car.java
+echo "<UNIX-PROMPT> /bin/rm *class"
+/bin/rm *class
+echo "<UNIX-PROMPT> javac TrafficTesterView.java"
+javac TrafficTesterView.java
+echo "<UNIX-PROMPT> ls -tl *class"
+ls -tl *class
+# NOTE2 	    On Wed, Nov 2, replace "data1" below by one of "data2" (or
+#		    "data3", etc.), if you wish, according to your decision on
+#		    what would best demonstrate the current stage of your
+#		    iterative enhancement.
+echo "<UNIX-PROMPT> cat dataWill_for_TrafficTesterView"
+cat dataWill_for_TrafficTesterView
+echo "<UNIX-PROMPT> java TrafficTesterView < dataWill_for_TrafficTesterView"
+java TrafficTesterView < dataWill_for_TrafficTesterView
+0;david@mactop: ~/Documents/UR/y3s1/cs322/proj/code/cs322-traffic-projdavid@mactop:~/Documents/UR/y3s1/cs322/proj/code/cs322-traffic-proj$ ./unix_commands_for_stage1b
+<UNIX-PROMPT> pwd
+/Users/david/Documents/UR/y3s1/cs322/proj/code/cs322-traffic-proj
+<UNIX-PROMPT> ls -tl *java
+-rwxr-xr-x  1 david  staff   1943 Nov 14 22:03 TrafficTesterModel.java
+-rwxr-xr-x  1 david  staff   8009 Nov 14 22:03 TrafficTesterView.java
+-rwxr-xr-x  1 david  staff  10024 Nov 14 21:51 Grid.java
+-rwxr-xr-x  1 david  staff   8774 Nov 14 21:51 Intersection.java
+-rwxr-xr-x  1 david  staff   1818 Nov 14 21:51 Lane.java
+-rwxr-xr-x  1 david  staff   1956 Nov 11 13:33 Car.java
+<UNIX-PROMPT> wc *java
+      55     181    1956 Car.java
+     243     999   10024 Grid.java
+     227     798    8774 Intersection.java
+      62     191    1818 Lane.java
+      51     169    1943 TrafficTesterModel.java
+     190     895    8009 TrafficTesterView.java
+     828    3233   32524 total
+<UNIX-PROMPT> cat TrafficTesterView.java
+// Programmer: Arthur Charlesworth  (c) Copyright 2016
+// Modified by GOATS team: Alex David Rex Tom Zihao
+// *****************************************************************************
+// *****************************************************************************
+// **** TrafficTesterView
+// *****************************************************************************
+// *****************************************************************************
+
+// Latest Enhancement: Commented out print statements; run sim for timesteps
+// NOTE: A lane has the same coordinates as the intersection the lane aims at.
+//   Throughout the rest of the semester, make sure that
+//   intersections of a grid are processed in exactly the following order:
+//     row 1 intersections, from left to right
+//     row 2 intersections, from left to right, etc, for all rows.
+//   In an actual simulation, that process should be repeated (in that specific
+//   order) as many times as necessary for the desired length of the simulation.
+//   But, for simplicity, the initial tester software students build should
+//   only show the first iteration of the above process, that is, only one
+//   processing of each of the intersections.
+//
+//   The format of the data to be used with the program in this file
+//   is show, via an example, at the end of this file.
+
+import java.util.*;
+
+public class TrafficTesterView {
+
+// NOTE: Just to keep the current tester program really simple,
+// the following constants are not encapsulated within two classes, Direction
+// and Turn, according to appropriate Information Hiding:
+  static final int SOUTHWARD = 0;
+  static final int EASTWARD = 1;
+  static final int NORTHWARD = 2;
+  static final int WESTWARD = 3;
+  static final int NEVER_TURN = 0;
+  static final int TURN_RIGHTWARD = 1;
+  static final int TURN_LEFTWARD = -1;
+
+  public static void main(String[] args) {
+    Scanner console = new Scanner(System.in);
+    console.nextLine();
+    int numIntersectionsInOneDirection = console.nextInt();
+    //System.out.print("The number of intersections in one direction ");
+    //System.out.println("is: " + numIntersectionsInOneDirection);
+    console.nextLine();
+    console.nextLine();
+    int lengthOfSimulation = console.nextInt();
+    //System.out.print("The length of the simulation ");
+    //System.out.println("is: " + lengthOfSimulation);
+    console.nextLine();
+    console.nextLine();
+    int maxLaneCapacity = console.nextInt();
+    //System.out.print("The maximum capacity of a lane is ");
+    //System.out.println("is: " + maxLaneCapacity);
+    console.nextLine();
+    console.nextLine();
+    int minTimeToTravelLane = console.nextInt();
+    //System.out.print("The minimum time to travel a lane ");
+    //System.out.println("is: " + minTimeToTravelLane);
+    console.nextLine();
+    console.nextLine();
+    int maxQuarterRoundaboutCapacity = console.nextInt();
+    //System.out.print("The maximum capacity of a quarter of a roundabout ");
+    //System.out.println("is: " + maxQuarterRoundaboutCapacity);
+    console.nextLine();
+    console.nextLine();
+    int minTimeToTravelQuarterRoundabout = console.nextInt();
+    //System.out.print("The minimum time to travel a quarter of a roundabout ");
+    //System.out.println("is: " + minTimeToTravelQuarterRoundabout);
+    console.nextLine();
+    console.nextLine();
+    int numberOfCars = console.nextInt();
+    //System.out.println("The number of cars is: " + numberOfCars);
+    int carID;
+    int row;
+    int col;
+    int laneDirectionCode;
+    int numBlocksBeforeTurning;
+    int turnDirectionCode;
+    ArrayList< ArrayList<Integer> > carParameters;
+    carParameters = new ArrayList< ArrayList<Integer> >();
+    for (int i = 1; i <= numberOfCars; i++) {
+       console.nextLine();
+       console.nextLine();
+       carID = console.nextInt();
+       //System.out.println("Car #" + carID);
+       console.nextLine();
+       console.nextLine();
+       col = console.nextInt();
+       console.nextLine();
+       console.nextLine();
+       row = console.nextInt();
+       console.nextLine();
+       console.nextLine();
+       laneDirectionCode = console.nextInt();
+       console.nextLine();
+       console.nextLine();
+       numBlocksBeforeTurning = console.nextInt();
+       console.nextLine();
+       console.nextLine();
+       turnDirectionCode = console.nextInt();
+       ArrayList<Integer> currentParams = new ArrayList<Integer>();
+       currentParams.add(carID);
+       currentParams.add(row);
+       currentParams.add(col);
+       currentParams.add(laneDirectionCode);
+       currentParams.add(numBlocksBeforeTurning);
+       currentParams.add(turnDirectionCode);
+       carParameters.add(currentParams);
+       //System.out.println("  is born in the lane located at col " + col +
+       //		    " and row " + row + ", that aims " +
+       //		    convertToLaneDirection(laneDirectionCode) + ",");
+       //System.out.println("  and has " + numBlocksBeforeTurning +
+       //		    " block(s) to go before turning");
+       //System.out.println("  and plans to " +
+       //		    convertToTurnDirection(turnDirectionCode));
+    } // end for
+    //System.out.println("In TrafficTesterView: constructing a Traffic"+
+    //	      "TesterModel");
+    TrafficTesterModel sim = new TrafficTesterModel(
+	    numIntersectionsInOneDirection,numIntersectionsInOneDirection,
+	    carParameters, lengthOfSimulation);
+    //System.out.println("In TrafficTesterView: running the TrafficTesterModel");
+    sim.run();
+
+  } // main
+
+  public static String convertToLaneDirection(int laneDirectionCode) {
+    if (laneDirectionCode == SOUTHWARD)      return "SOUTHWARD";
+    if (laneDirectionCode == EASTWARD)	     return "EASTWARD";
+    if (laneDirectionCode == NORTHWARD)      return "NORTHWARD";
+    if (laneDirectionCode == WESTWARD)	     return "WESTWARD";
+    return "ILLEGAL laneDirectionCode!!!";
+  } // convertToLaneDirection
+
+  public static String convertToTurnDirection(int turnDirectionCode) {
+    if (turnDirectionCode == NEVER_TURN)     return "NEVER_TURN";
+    if (turnDirectionCode == TURN_RIGHTWARD) return "TURN_RIGHTWARD";
+    if (turnDirectionCode == TURN_LEFTWARD)  return "TURN_LEFTWARD";
+    return "ILLEGAL turnDirectionCode!!!";
+  } // convertToTurnDirection
+
+} // TrafficTesterView
+
+////////////////// Example of sample use of the above program //////////////////
+// except for the fact that all the following lines have been made comments,  //
+// and also the actual phrase "additional blocks to travel" in the data       //
+// shown below has been shortened to the phrase "additional blocks" to fit    //
+// the lines below into the required 80-columns per line.		      //
+////////////////////////////////////////////////////////////////////////////////
+//numIntersectionsInOneDirection:
+//1
+//number of cars created for the test:
+//2
+//car number:
+//1
+//born in the lane that is positioned at col:
+//1
+//born in the lane that is positioned at row:
+//1
+//born in the lane that is oriented in direction:
+//0
+//additional blocks prior to turning (-1 means the car will never turn):
+//0
+//direction the car will turn, when the car turns:
+//1
+//car number:
+//2
+//born in the lane that is positioned at col:
+//1
+//born in the lane that is positioned at row:
+//1
+//born in the lane that is oriented in direction:
+//3
+//additional blocks prior to turning (-1 means the car will never turn):
+//-1
+//direction the car will turn, when the car turns:
+//0
+//hopper2{acharles}2484: java TrafficTesterView < data1_for_TrafficTesterView
+//The number of intersections in one direction is: 1
+//The number of cars is: 2
+//Car #1
+//  is born in the lane located at col 1 and row 1, that aims SOUTHWARD,
+//  and has 0 block(s) to go before turning
+//  and plans to TURN_RIGHTWARD
+//Car #2
+//  is born in the lane located at col 1 and row 1, that aims WESTWARD,
+//  and has -1 block(s) to go before turning
+//  and plans to NEVER_TURN
+//
+<UNIX-PROMPT> cat TrafficTesterModel.java
+// Programmers: GOATS team: Alex David Rex Tom Zihao
+// *****************************************************************************
+// *****************************************************************************
+// **** TrafficTesterModel
+// *****************************************************************************
+// *****************************************************************************
+// The purpose of the TrafficTesterModel is to create a grid given a provided
+// numRows and numCols.  Provided cars are then inserted into the grid.
+// Latest Enhancement: Stage 0 Corrections
+
+import java.util.ArrayList;
+
+public class TrafficTesterModel{
+    Grid g;
+    int t;
+    int lengthOfSimulation;
+
+    //************Constructor************
+    public TrafficTesterModel(int numRows, int numCols,
+    ArrayList< ArrayList<Integer> > carParameters, int lengthOfSim){
+	//System.out.println("In TrafficTesterModel(): ");
+	//********Creating a new grid********
+	//System.out.println("	Constructing a Grid...");
+	g = new Grid(numRows, numCols);
+
+	//********Teling the grid to make and insert cars********
+	//System.out.println("	Telling the grid to make and insert cars...");
+	g.insertCars(carParameters);
+
+	lengthOfSimulation = lengthOfSim;
+
+	//System.out.println("Exiting TrafficTesterModel()");
+    }// End of TrafficTesterModel constructor
+
+
+
+    //Calls update() on the Grid, causing the intersections to be looked at
+    public void run(){
+	//System.out.println("In TrafficTesterModel: running simulation");
+	for(t = 1; t <= lengthOfSimulation; t++){
+	    System.out.println("");
+	    System.out.println("******************* During timestep: "
+			       + t +" *******************");
+	    g.update();
+	}// End of for(t < lengthOfSimulation; t++)
+	//g.update();
+    }// End of run method
+
+
+
+}
+<UNIX-PROMPT> cat Grid.java
+// Programmers: GOATS team: Alex David Rex Tom Zihao
+// *****************************************************************************
+// *****************************************************************************
+// **** Grid
+// *****************************************************************************
+// *****************************************************************************
+// Latest Enhancement: Changed indexing to start at 1 for stage_0
+
+import java.util.*;
+import java.io.*;
+
+public class Grid
+{
+    public static final int SOUTHWARD = 0;
+    public static final int EASTWARD = 1;
+    public static final int NORTHWARD = 2;
+    public static final int WESTWARD = 3;
+
+    // Store Intersections in a 2D array:
+    // Even though Java is 0-indexed, Intersection (1,2) is i[1][2]
+    // We achieve this by not initializing row 0 and col 0
+    private Intersection i[][];
+    private int numRows;
+    private int numCols;
+
+    //Constuctor
+    public Grid(int numRows, int numCols)
+    {
+	this.numRows = numRows;
+	this.numCols = numCols;
+	// Allocate space for numRows*numCols intersections
+	// In nested for loops, construct lanes and intersections appropriately
+	i = new Intersection[numRows + 1][numCols + 1];
+	for(int rowNum = 1; rowNum <= numRows; rowNum++)
+	{
+	    for(int colNum=1; colNum <= numCols; colNum++)
+	    {
+		//System.out.print("Constructing Intersection ("+rowNum+
+		    //	    ","+colNum+")...");
+		// Construct the right amount of lanes for each intersection
+		// There's a pattern in the number of "new" lane pairs for each:
+		//   3 2 2 2
+		//   3 2 2 2
+		//   3 2 2 2
+		//   4 3 3 3
+		if(rowNum==1)
+		{
+		    if(colNum==1)
+		    {
+			// Construct 4 new lanes for Intersection [1,1]
+			shareNoLanes(rowNum, colNum);
+		    } else { //rowNum==1, colNum > 1
+			// Constructs and shares lanes for the intersection at
+			// [rowNum, colNum]
+			shareLanesWithLeft(rowNum,colNum);
+		    } // end of if(colNum==1)
+		} else { //rowNum > 1
+		    if(colNum==1)
+		    {
+			shareLanesWithBelow(rowNum,colNum);
+		    } else { //rowNum > 1, colNum > 1
+			shareLanesWithLeftAndBelow(rowNum,colNum);
+		    } // end of if(colNum==1)
+		} // end of if(rowNum==1)
+		//end lane construction
+		//System.out.println("Success!");
+	    } // end of for(int colNum=0; colNum<numCols; colNum++)
+	} // end of for(int rowNum = 0; rowNum < numRows; rowNum++)
+	// The above code constructs lanes and intersections, populates grid */
+	setOutboundBoundaryLanes();
+    } // end of Grid(int numRows, int numCols)
+
+
+
+    public void insertCars(ArrayList< ArrayList<Integer> > carParameters)
+    {
+	//Constructs cars w/ carParameters
+	for( ArrayList<Integer> d:carParameters )
+	{
+	    Car c = new Car( d.get(4), d.get(5), d.get(0) );
+	    this.insertCar( d.get(1), d.get(2), d.get(3), c );
+	    //ArrayList carParameters looks like this:
+		//[0]int carID, [1]int row, [2]int col,
+		//[3]int laneDirectionCode, [4]int numBlocksBeforeTurning,
+		//[5]int turnDirectionCode
+	} // end of for( ArrayList<Integer> d:carParameters )
+    } // end of insertCars(ArrayList< ArrayList<Integer> > carParameters)
+
+
+
+    public void update()
+    {
+	for ( int rowNum = 1; rowNum <= numRows; rowNum++ )
+	{
+	    for ( int colNum = 1; colNum <= numCols; colNum++ )
+	    {
+		System.out.println("");
+		System.out.println("At the intersection located at col " +
+				    colNum+ " and row " + rowNum);
+		i[rowNum][colNum].visit();
+	    } // end of for( int colNum = 0; colNum < i[0].length; colNum++ )
+	} // end of for( int rowNum = 0; rowNum < i.length; rowNum++ )
+    } // end of update()
+
+
+
+    private void insertCar(int row, int col, int laneDir, Car c)
+    {
+	(i[row][col].getInLane(laneDir)).add(c);
+    } // end of insertCar(int row, int col, int laneDir, Car c)
+
+
+
+
+    private void shareLanesWithLeftAndBelow(int rowNum, int colNum)
+    {
+	Lane[] inLanes = new Lane[4];
+	Lane[] outLanes = new Lane[4];
+	for(int cardinalDir=0; cardinalDir<4; cardinalDir++)
+	{
+	    // For rows and columns > 1, lanes need to be shared
+	    // with the intersection at left and with the intersection
+	    // below
+	    if(cardinalDir==SOUTHWARD){
+		outLanes[SOUTHWARD] = i[rowNum-1][colNum].getInLane(SOUTHWARD);
+	    } else if(cardinalDir==WESTWARD){
+		outLanes[WESTWARD] = i[rowNum][colNum-1].getInLane(SOUTHWARD);
+	    } else {
+		outLanes[cardinalDir] = new Lane();
+	    } // end of if(cardinalDir==SOUTHWARD)
+	} // end of for(int cardinalDir=0; cardinalDir<4; cardinalDir++)
+	for(int cardinalDir=0; cardinalDir<4; cardinalDir++)
+	{
+	    if(cardinalDir==NORTHWARD)
+	    {
+		inLanes[NORTHWARD] = i[rowNum-1][colNum].getOutLane(NORTHWARD);
+	    } else if(cardinalDir==EASTWARD){
+		inLanes[EASTWARD] = i[rowNum][colNum-1].getOutLane(EASTWARD);
+	    } else {
+		inLanes[cardinalDir] = new Lane();
+	    } // end of if(cardinalDir==NORTHWARD)
+	} // end of for(int cardinalDir=0; cardinalDir<4; cardinalDir++)
+	i[rowNum][colNum] = new Intersection(inLanes,outLanes);
+   } // end of shareLanesWithLeftAndBelow(int rowNum, int colNum)
+
+
+
+    private void shareLanesWithBelow(int rowNum, int colNum)
+    {
+	Lane[] inLanes = new Lane[4];
+	Lane[] outLanes = new Lane[4];
+	for(int cardinalDir=0; cardinalDir<4; cardinalDir++)
+	{
+	    // For rows > 1, the leftmost column has to share
+	    // a pair of lanes with the intersection below it
+	    if(cardinalDir==SOUTHWARD){
+		outLanes[SOUTHWARD] = i[rowNum-1][colNum].getInLane(SOUTHWARD);
+	    } else {
+		outLanes[cardinalDir] = new Lane();
+	    } // end of if(cardinalDir==SOUTHWARD)
+	} // end of for(int cardinalDir=0; cardinalDir<4; cardinalDir++)
+	for(int cardinalDir=0; cardinalDir<4; cardinalDir++)
+	{
+	    if(cardinalDir==NORTHWARD){
+		inLanes[NORTHWARD] = i[rowNum-1][colNum].getOutLane(NORTHWARD);
+	    } else {
+		inLanes[cardinalDir] = new Lane();
+	    } // end of if(cardinalDir==NORTHWARD)
+	} // end of for(int cardinalDir=0; cardinalDir<4; cardinalDir++)
+	i[rowNum][colNum] = new Intersection(inLanes,outLanes);
+    } // end of shareLanesWithBelow(int rowNum, int colNum)
+
+
+
+    private void shareLanesWithLeft(int rowNum, int colNum)
+    {
+	Lane[] inLanes = new Lane[4];
+	Lane[] outLanes = new Lane[4];
+	for(int cardinalDir=0; cardinalDir<4; cardinalDir++)
+	{
+	    // On row 1, each intersection's westward outbound lane is the
+	    // westward inbound lane of the intersection in the previous column
+	    if(cardinalDir==WESTWARD)
+	    {
+		outLanes[WESTWARD] = i[rowNum][colNum-1].getInLane(WESTWARD);
+	    } else {
+		// The other 3 outbound lanes are new to this intersection
+		outLanes[cardinalDir] = new Lane();
+	    } // end of if(cardinalDir==WESTWARD)
+	} // end of for(int cardinalDir=0; cardinalDir<4; cardinalDir++)
+	for(int cardinalDir=0; cardinalDir<4; cardinalDir++)
+	{
+	    // Similarly, the eastward inbound lane (adjacent to the
+	    // westward outbound lane) has already been constructed
+	    // and assigned to the intersection in the previous col.
+	    if(cardinalDir==EASTWARD)
+	    {
+		inLanes[EASTWARD] = i[rowNum][colNum-1].getOutLane(EASTWARD);
+	    } else {
+		inLanes[cardinalDir] = new Lane();
+	    } // end of if(cardinalDir==EASTWARD)
+	} // end of for(int cardinalDir=0; cardinalDir<4; cardinalDir++)
+	i[rowNum][colNum] = new Intersection(inLanes,outLanes);
+    } // end of shareLanesWithLeft(int rowNum, int colNum)
+
+
+
+    private void shareNoLanes(int rowNum, int colNum)
+    {
+	Lane[] inLanes = new Lane[4];
+	Lane[] outLanes = new Lane[4];
+	for( int cardinalDir=0; cardinalDir<4; cardinalDir++ )
+	{
+	    //Generate 4 new lane pairs for Intersection [1,1]
+	    inLanes[cardinalDir] = new Lane();
+	    outLanes[cardinalDir] = new Lane();
+	} // end of for( int cardinalDir=0; cardinalDir<4; cardinalDir++ )
+	i[rowNum][colNum] = new Intersection(inLanes,outLanes);
+    } // end of shareNoLanes(int rowNum, int colNum)
+
+
+
+    private void setOutboundBoundaryLanes()
+    {
+	for( int colNum=1; colNum <= numCols; colNum++ )
+	{
+	    i[1][colNum].getOutLane(SOUTHWARD).setIsBoundary();
+	    //bottom row exits SOUTH
+	    i[numRows][colNum].getOutLane(NORTHWARD).setIsBoundary();
+	    //top row exits NORTH
+	} // end of for( int colNum=1; colNum <= numCols; colNum++ )
+	for( int rowNum=1; rowNum <= numRows; rowNum++ )
+	{
+	    i[rowNum][1].getOutLane(WESTWARD).setIsBoundary();
+	    //leftmost col exits WEST
+	    i[rowNum][numCols].getOutLane(EASTWARD).setIsBoundary();
+	    //rightmost col exits WEST
+	} // end of for( int rowNum=1; rowNum <= numRows; rowNum++ )
+    } // end of setOutboundBoundaryLanes()
+
+
+
+}
+<UNIX-PROMPT> cat Intersection.java
+// Programmers: GOATS team: Alex David Rex Tom Zihao
+// *****************************************************************************
+// *****************************************************************************
+// **** Intersection
+// *****************************************************************************
+// *****************************************************************************
+// Latest Enhancement: Fixed comments
+
+//Intersection Class
+//An intersection will contain 2 Lane[]'s of size 4, for a total of 8 lanes.
+//4 are for inflowing lanes, the other 4 are for outflowing lanes.
+//Every car within the inLane array will be evaluated and moved to the proper
+//lane within the outLane[], which will put it in the inLane[] for a different
+//intersection.
+
+public class Intersection {
+    //**************Instance Variables**************
+    public Lane[] inLane;
+    public Lane[] outLane;
+
+    //**************Constructor**************
+    public Intersection(Lane[] inLanes, Lane[] outLanes)
+    {
+	this.inLane = inLanes;
+	this.outLane = outLanes;
+    }// end of Intersection(Lane[], Lane[]) constructor
+
+
+
+    //**************Instance Methods**************
+    // Getter methods to get references to incoming, outgoing lanes
+    public Lane getInLane(int laneDir)
+    {
+	return inLane[laneDir];
+    }//end of getInLane()
+
+
+
+    public Lane getOutLane(int laneDir)
+    {
+	return outLane[laneDir];
+    }//end of getOutLane()
+
+
+
+    //The following methods look
+    //at each lane in inLane and move the car in that lane
+    //for use in visit()
+    public void fromNorth(int dir, Car c)
+    {
+	//If the car is coming from the North entry point
+	if (dir == 0)
+	{//Straight
+	    System.out.println("   car#" +
+			       c.getID() +
+			       " is removed and placed into " +
+			       "outgoing lane having direction " +
+			       TrafficTesterView.convertToLaneDirection(0));
+	    outLane[0].add(c);
+	}// end if(dir == 0)
+	if (dir == 1)
+	{//right
+	    System.out.println("   car#" +
+				c.getID() +
+				" is removed and placed into " +
+				"outgoing lane having direction " +
+				TrafficTesterView.convertToLaneDirection(3));
+	    outLane[3].add(c);
+	}//end if(dir == 1)
+	if (dir == -1)
+	{//left
+	    System.out.println("   car#" +
+				c.getID() +
+				" is removed and placed into " +
+				"outgoing lane having direction " +
+				TrafficTesterView.convertToLaneDirection(1));
+	    outLane[1].add(c);
+	}//end if (dir == -1)
+    }//end fromNorth()
+
+
+
+    public void fromSouth(int dir, Car c)
+    {//If the car is coming from the South entry point
+	if (dir == 0)
+	{//Straight
+	    System.out.println("   car#" +
+			       c.getID() +
+			       " is removed and placed into " +
+			       "outgoing lane having direction " +
+			       TrafficTesterView.convertToLaneDirection(2));
+	    outLane[2].add(c);
+	}//end if(dir == 0)
+	if (dir == 1)
+	{//right
+	    System.out.println("   car#" +
+			       c.getID() +
+			       " is removed and placed into " +
+			       "outgoing lane having direction " +
+			       TrafficTesterView.convertToLaneDirection(1));
+	    outLane[1].add(c);
+	}//end if(dir == 1)
+	if (dir == -1)
+	{//left
+	    System.out.println("   car#" +
+			      c.getID() +
+			      " is removed and placed into " +
+			       "outgoing lane having direction " +
+			       TrafficTesterView.convertToLaneDirection(3));
+	    outLane[3].add(c);
+	}//end if(dir == -1)
+    }//end fromSouth()
+
+
+
+    public void fromEast(int dir, Car c)
+    {//If the car is coming from the East entry point
+	if (dir == 0)
+	{//Straight
+	    System.out.println("   car#" +
+			       c.getID() +
+			       " is removed and placed into " +
+			       "outgoing lane having direction " +
+			       TrafficTesterView.convertToLaneDirection(3));
+	    outLane[3].add(c);
+	}//end if(dir == 0)
+	if (dir == 1)
+	{//right
+	    System.out.println("   car#" +
+			       c.getID() +
+			       " is removed and placed into " +
+			       "outgoing lane having direction " +
+			       TrafficTesterView.convertToLaneDirection(2));
+	    outLane[2].add(c);
+	}//end if(dir == 1)
+	if (dir == -1)
+	{//left
+	    System.out.println("   car#" +
+			       c.getID() +
+			       " is removed and placed into " +
+			       "outgoing lane having direction " +
+			       TrafficTesterView.convertToLaneDirection(0));
+	    outLane[0].add(c);
+	}//end if(dir == -1)
+    }//end fromEast()
+
+
+
+    public void fromWest(int dir, Car c)
+    {//If the car is coming from the West entry point
+	if (dir == 0)
+	{//Straight
+	    System.out.println("   car#" +
+			       c.getID() +
+			       " is removed and placed into " +
+			       "outgoing lane having direction " +
+			       TrafficTesterView.convertToLaneDirection(1));
+	    outLane[1].add(c);
+	}//end if(dir == 0)
+	if (dir == 1)
+	{//right
+	    System.out.println("   car#" +
+			       c.getID() +
+			       " is removed and placed into " +
+			       "outgoing lane having direction " +
+			       TrafficTesterView.convertToLaneDirection(0));
+	    outLane[0].add(c);
+	}//end if(dir == 1)
+	if (dir == -1)
+	{//left
+	    System.out.println("   car#" +
+			       c.getID() +
+			       " is removed and placed into " +
+			       "outgoing lane having direction " +
+			       TrafficTesterView.convertToLaneDirection(2));
+	    outLane[2].add(c);
+	}//end if(dir == -1)
+    }//end of fromWest()
+
+
+
+    //Looks at each lane in inLane and moves the car in that lane
+    //(if it has one) into the appropriate outLane spot
+    // Print the empty/nonempty status of incoming lanes, and when cars moved
+    public void visit()
+    {
+	for (int i = 0; i <= 3; i++)
+	{ //Iterate through the 4 cardinal directions
+	    Car c = inLane[i].get();
+	    if (c != null)
+	    {
+		System.out.println("  incoming lane having direction " +
+			    TrafficTesterView.convertToLaneDirection(i) +
+			    " is nonempty and");
+		int dir = c.getCurrentDirection();
+		c.update();
+		if(i == 0){ fromNorth(dir, c); }
+		if(i == 1){ fromWest(dir, c); }
+		if(i == 2){ fromSouth(dir, c); }
+		if(i == 3){ fromEast(dir, c); }
+	    } else {
+		System.out.println("  incoming lane having direction " +
+			    TrafficTesterView.convertToLaneDirection(i) +
+			    " is empty");
+	    }//end if(c != null)
+	}//end first for()
+
+	// Now all the incoming cars have been moved to outLanes
+	// Iterate through the outgoing lanes, printing empty/nonempty
+	for(int j=0; j<4; j++)
+	{
+	    if( outLane[j].isEmpty() )
+	    {
+		System.out.println("  outgoing lane having direction " +
+			    TrafficTesterView.convertToLaneDirection(j) +
+			    " is empty");
+	    } else {
+		System.out.println("  outgoing lane having direction " +
+			    TrafficTesterView.convertToLaneDirection(j) +
+			    " is nonempty");
+	    }//end if( outLane[j].isEmpty() )
+	}//end for(int j=0; j<4; j++)
+    }//end visit()
+
+
+
+}//end Intersection class
+<UNIX-PROMPT> cat Lane.java
+// Programmer: Arthur Charlesworth  (c) Copyright 2016
+// Modified by GOATS team: Alex David Rex Tom Zihao
+// *****************************************************************************
+// *****************************************************************************
+// **** Lane
+// *****************************************************************************
+// *****************************************************************************
+// Latest Enhancement: Corrected style rules for stage_0
+
+import java.util.Queue;
+import java.util.LinkedList;
+
+//Lane Class
+//This class defines a "Lane" object, which will hold cars.
+//Lanes can be either incoming or outgoing depending on their direction in
+//relation to intersections.
+//Each lane will belong to 2 intersections: as an incoming lane for one
+//and an outgoing lane for another
+
+public class Lane {
+    //**************Instance Variables**************
+    public Queue<Car> q;
+    public boolean boundary;
+
+    //**************Constructor**************
+    public Lane() {
+	q = new LinkedList<Car>();
+	boundary = false;
+    }//end of constructor
+
+
+
+    //**************Instance Methods**************
+    //removes a Car from a Lane and returns it
+    public Car get() {
+	return q.poll();
+    }//end of get
+
+
+
+    //adds a provided Car c to the Lane
+    public boolean add(Car c) {
+	if (this.boundary == true){
+	    System.out.println("   car#" + c.getID() + " leaves the grid");
+	}//end of if (this.boundary == true)
+	return q.add(c);
+    }//end of add
+
+
+
+    public boolean isEmpty() {
+	return (q.peek() == null);
+    }//end of isEmpty
+
+
+
+    public void setIsBoundary() {
+	this.boundary = true;
+    }//end of setIsBoundary
+
+
+}
+<UNIX-PROMPT> cat Car.java
+// Programmers: GOATS team: Alex David Rex Tom Zihao
+// *****************************************************************************
+// *****************************************************************************
+// **** Car
+// *****************************************************************************
+// *****************************************************************************
+// Latest Enhancement: Corrected style rules for stage_0
+
+// The Car class keeps track of ID, when to turn, and turning direction of each
+// instance of Car, and provides such information if needed.
+
+public class Car{
+    //**************Instance Variables**************
+    int numBlocksBeforeTurning;
+    int turnDirectionCode;
+    int carID;
+
+    //**************Constructor**************
+    public Car(int initialNumBlocks, int turnDirectionCode, int carID){
+	this.numBlocksBeforeTurning = initialNumBlocks;
+	this.turnDirectionCode = turnDirectionCode;
+	this.carID = carID;
+    }//End of car constructor
+
+
+
+    //**************Instance Methods**************
+    //After a car moves from one lane to another, update() is called to
+    //decrement the numBlocksBeforeTurning
+    public void update(){
+	this.numBlocksBeforeTurning--;
+    }//End of update() method
+
+
+
+    //Determines which direction a car will be moving.
+    //If its numBlocksBeforeTurning is 0, the it will return the car's
+    //turnDirectinoCode.
+    //Otherwise, it will return -1, which indicates it is moving straight
+    public int getCurrentDirection(){
+	if (this.numBlocksBeforeTurning == 0){
+	    return this.turnDirectionCode;
+	}//end of if(this.numBlocksBeforeTurning == 0)
+	else{
+	    return 0;
+	}
+    }//End of getCurrentDirection() method
+
+
+
+    //Return the ID of a car
+    public int getID(){
+	return this.carID;
+    }//End of getID() method
+}
+<UNIX-PROMPT> /bin/rm *class
+<UNIX-PROMPT> javac TrafficTesterView.java
+<UNIX-PROMPT> ls -tl *class
+-rw-r--r--  1 david  staff   557 Nov 14 22:14 Car.class
+-rw-r--r--  1 david  staff  3477 Nov 14 22:14 Grid.class
+-rw-r--r--  1 david  staff  2987 Nov 14 22:14 Intersection.class
+-rw-r--r--  1 david  staff  1214 Nov 14 22:14 Lane.class
+-rw-r--r--  1 david  staff  1132 Nov 14 22:14 TrafficTesterModel.class
+-rw-r--r--  1 david  staff  1922 Nov 14 22:14 TrafficTesterView.class
+<UNIX-PROMPT> cat dataWill_for_TrafficTesterView
+numIntersectionsInOneDirection:
+2
+lengthOfSimulation:
+2
+maxLaneCapacity
+2
+minTimeToTravelLane
+2
+maxQuarterRoundaboutCapacity
+2
+minTimeToTravelQuarterRoundabout
+2
+number of cars created for the test:
+1
+car number:
+1
+born in the lane that is positioned at col:
+2
+born in the lane that is positioned at row:
+2
+born in the lane that is oriented in direction:
+0
+additional blocks to travel prior to turning (-1 means the car will never turn):
+-1
+direction the car will turn, when the car turns:
+0
+<UNIX-PROMPT> java TrafficTesterView < dataWill_for_TrafficTesterView
+
+******************* During timestep: 1 *******************
+
+At the intersection located at col 1 and row 1
+  incoming lane having direction SOUTHWARD is empty
+  incoming lane having direction EASTWARD is empty
+  incoming lane having direction NORTHWARD is empty
+  incoming lane having direction WESTWARD is empty
+  outgoing lane having direction SOUTHWARD is empty
+  outgoing lane having direction EASTWARD is empty
+  outgoing lane having direction NORTHWARD is empty
+  outgoing lane having direction WESTWARD is empty
+
+At the intersection located at col 2 and row 1
+  incoming lane having direction SOUTHWARD is empty
+  incoming lane having direction EASTWARD is empty
+  incoming lane having direction NORTHWARD is empty
+  incoming lane having direction WESTWARD is empty
+  outgoing lane having direction SOUTHWARD is empty
+  outgoing lane having direction EASTWARD is empty
+  outgoing lane having direction NORTHWARD is empty
+  outgoing lane having direction WESTWARD is empty
+
+At the intersection located at col 1 and row 2
+  incoming lane having direction SOUTHWARD is empty
+  incoming lane having direction EASTWARD is empty
+  incoming lane having direction NORTHWARD is empty
+  incoming lane having direction WESTWARD is empty
+  outgoing lane having direction SOUTHWARD is empty
+  outgoing lane having direction EASTWARD is empty
+  outgoing lane having direction NORTHWARD is empty
+  outgoing lane having direction WESTWARD is empty
+
+At the intersection located at col 2 and row 2
+  incoming lane having direction SOUTHWARD is nonempty and
+   car#1 is removed and placed into outgoing lane having direction SOUTHWARD
+  incoming lane having direction EASTWARD is empty
+  incoming lane having direction NORTHWARD is empty
+  incoming lane having direction WESTWARD is empty
+  outgoing lane having direction SOUTHWARD is nonempty
+  outgoing lane having direction EASTWARD is empty
+  outgoing lane having direction NORTHWARD is empty
+  outgoing lane having direction WESTWARD is empty
+
+******************* During timestep: 2 *******************
+
+At the intersection located at col 1 and row 1
+  incoming lane having direction SOUTHWARD is empty
+  incoming lane having direction EASTWARD is empty
+  incoming lane having direction NORTHWARD is empty
+  incoming lane having direction WESTWARD is empty
+  outgoing lane having direction SOUTHWARD is empty
+  outgoing lane having direction EASTWARD is empty
+  outgoing lane having direction NORTHWARD is empty
+  outgoing lane having direction WESTWARD is empty
+
+At the intersection located at col 2 and row 1
+  incoming lane having direction SOUTHWARD is nonempty and
+   car#1 is removed and placed into outgoing lane having direction SOUTHWARD
+   car#1 leaves the grid
+  incoming lane having direction EASTWARD is empty
+  incoming lane having direction NORTHWARD is empty
+  incoming lane having direction WESTWARD is empty
+  outgoing lane having direction SOUTHWARD is nonempty
+  outgoing lane having direction EASTWARD is empty
+  outgoing lane having direction NORTHWARD is empty
+  outgoing lane having direction WESTWARD is empty
+
+At the intersection located at col 1 and row 2
+  incoming lane having direction SOUTHWARD is empty
+  incoming lane having direction EASTWARD is empty
+  incoming lane having direction NORTHWARD is empty
+  incoming lane having direction WESTWARD is empty
+  outgoing lane having direction SOUTHWARD is empty
+  outgoing lane having direction EASTWARD is empty
+  outgoing lane having direction NORTHWARD is empty
+  outgoing lane having direction WESTWARD is empty
+
+At the intersection located at col 2 and row 2
+  incoming lane having direction SOUTHWARD is empty
+  incoming lane having direction EASTWARD is empty
+  incoming lane having direction NORTHWARD is empty
+  incoming lane having direction WESTWARD is empty
+  outgoing lane having direction SOUTHWARD is empty
+  outgoing lane having direction EASTWARD is empty
+  outgoing lane having direction NORTHWARD is empty
+  outgoing lane having direction WESTWARD is empty
+0;david@mactop: ~/Documents/UR/y3s1/cs322/proj/code/cs322-traffic-projdavid@mactop:~/Documents/UR/y3s1/cs322/proj/code/cs322-traffic-proj$ exit
+exit
+
+Script done on Mon Nov 14 22:14:57 2016
