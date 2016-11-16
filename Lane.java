@@ -118,6 +118,10 @@ public class Lane {
 
     public boolean isFull()
     {
+        if( this.isInboundBoundary() || this.isOutboundBoundary() )
+        {
+            return false;
+        } // end of if ( this.isInboundBoundary() || this.isOutboundBoundary() )
         return q.size() >= capacity;
     } // end of isFull()
 
