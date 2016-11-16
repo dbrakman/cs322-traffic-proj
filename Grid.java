@@ -5,7 +5,6 @@
 // *****************************************************************************
 // *****************************************************************************
 // Latest Enhancement: Stores a list of cars; refreshes each at start of tstep
-// when appropriate 
 
 import java.util.*;
 import java.io.*;
