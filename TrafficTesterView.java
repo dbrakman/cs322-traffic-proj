@@ -115,13 +115,13 @@ public class TrafficTesterView {
        //System.out.println("  and plans to " + 
        //                   convertToTurnDirection(turnDirectionCode));
     } // end for
-    System.out.println("In TrafficTesterView: constructing a Traffic"+
-            "TesterModel");
+    //System.out.println("In TrafficTesterView: constructing a Traffic"+
+    //        "TesterModel");
     TrafficTesterModel sim = new TrafficTesterModel(
             numIntersectionsInOneDirection,numIntersectionsInOneDirection,
             carParameters, lengthOfSimulation,maxLaneCapacity,
             minTimeToTravelLane);
-    System.out.println("In TrafficTesterView: running the TrafficTesterModel");
+    //System.out.println("In TrafficTesterView: running the TrafficTesterModel");
     sim.run();
 
   } // main
