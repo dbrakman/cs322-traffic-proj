@@ -1,0 +1,26 @@
+numIntersectionsInOneDirection:
+2
+lengthOfSimulation:
+3
+maxLaneCapacity
+2
+minTimeToTravelLane
+1
+maxQuarterRoundaboutCapacity
+2
+minTimeToTravelQuarterRoundabout
+2
+number of cars created for the test:
+1
+car number:
+1
+born in the lane that is positioned at col:
+2
+born in the lane that is positioned at row:
+1
+born in the lane that is oriented in direction:
+2
+additional blocks to travel prior to turning (-1 means the car will never turn):
+1
+direction the car will turn, when the car turns:
+3
