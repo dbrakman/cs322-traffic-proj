@@ -69,3 +69,5 @@ public class Car{
         this.hasChangedLanes = change;
     }//End of setHasChangedLanes() method
 
+}
+
