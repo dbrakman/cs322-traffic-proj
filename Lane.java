@@ -84,7 +84,7 @@ public class Lane {
             // Future enhancement: update stats for the car leaving 
         } // end of if(this.isOutboundBoundary())
         timesInQueue.put(c,0);
-        c.setHasMoved();
+        c.setHasChangedLanes(true);
         return q.add(c);
     } // end of add(Car c)
 
