@@ -1,0 +1,14 @@
+numIntersectionsInOneDirection:
+2
+lengthOfSimulation:
+6
+maxLaneCapacity
+2
+minTimeToTravelLane
+2
+maxQuarterRoundaboutCapacity
+2
+minTimeToTravelQuarterRoundabout
+2
+number of cars created for the test:
+0
