@@ -84,6 +84,7 @@ public class Lane {
             // Future enhancement: update stats for the car leaving 
         } // end of if(this.isOutboundBoundary())
         timesInQueue.put(c,0);
+        c.setHasMoved();
         return q.add(c);
     } // end of add(Car c)
 
@@ -102,8 +103,11 @@ public class Lane {
     public void update()
     {
         for( Car c : q )
-        {   // Increment c's timeInQueue
+        {   
+            if (!c.hasItMoved()){
+            // Increment c's timeInQueue
             timesInQueue.put(c,timesInQueue.get(c)+1);
+        }
         } // end of for( Car c : q )
     } // end of update()
 
