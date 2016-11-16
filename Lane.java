@@ -104,10 +104,10 @@ public class Lane {
     {
         for( Car c : q )
         {   
-            if (!c.hasItMoved()){
-            // Increment c's timeInQueue
-            timesInQueue.put(c,timesInQueue.get(c)+1);
-        }
+            if (!c.getHasChangedLanes()){
+                // Increment c's timeInQueue
+                timesInQueue.put(c,timesInQueue.get(c)+1);
+            }
         } // end of for( Car c : q )
     } // end of update()
 
