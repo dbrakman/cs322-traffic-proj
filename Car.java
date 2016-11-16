@@ -14,14 +14,14 @@ public class Car{
     int numBlocksBeforeTurning;
     int turnDirectionCode;
     int carID;
-    boolean hasMoved;
+    boolean hasChangedLanes;
 
     //**************Constructor**************
     public Car(int initialNumBlocks, int turnDirectionCode, int carID){
         this.numBlocksBeforeTurning = initialNumBlocks;
         this.turnDirectionCode = turnDirectionCode;
         this.carID = carID;
-        this.hasMoved = false;
+        this.hasChangedLanes = false;
     }//End of car constructor
 
 
@@ -57,19 +57,15 @@ public class Car{
 
 
 
-    public boolean hasItMoved(){
-        return this.hasMoved;
-    }
+    //Returns hasChangedLanes
+    public boolean getHasChangedLanes(){
+        return this.hasChangedLanes;
+    }//End of hasItMoved() method
 
 
 
-    public void setHasMoved(){
-        this.hasMoved = true;
-    }
+    //Sets the hasChangedLanes to change
+    public void setHasChangedLanes(boolean change){
+        this.hasChangedLanes = change;
+    }//End of setHasChangedLanes() method
 
-
-
-    public void resetHasMoved(){
-        this.hasMoved = false;
-    }
-}
