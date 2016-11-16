@@ -25,7 +25,8 @@ public class Lane {
                                             // each car spends in the lane
     private int capacity;
     private int minTimeToTraverse;
-    public boolean boundary;
+    public boolean inboundBoundary;
+    public boolean outboundBoundary;
 
     //**************Constructor**************
     public Lane(int capacity, int minTimeToTraverse)
@@ -81,12 +82,19 @@ public class Lane {
         {
             System.out.println("   car#" + c.getID() + " has left the grid");
             // Future enhancement: update stats for the car leaving 
-            q.remove(c);
-            return true;
         } // end of if(this.isBoundary())
         timesInQueue.put(c,0);
         return q.add(c);
     } // end of add(Car c)
+
+
+
+    public boolean initialAdd(Car c)
+    {
+        boolean done = this.add(c);
+        timesInQueue.put(c, minTimeToTraverse);
+        return done;
+    }
 
 
 
@@ -114,16 +122,16 @@ public class Lane {
     } // end of isFull()
 
 
-    
-    public void setIsBoundary() {
-        this.boundary = true;
-    } // end of setIsBoundary()
+
+    public boolean isInboundBoundary() {
+        return this.inboundBoundary;
+    } // end of isInboundBoundary()
 
 
 
-    public boolean isBoundary() {
-        return this.boundary;
-    } // end of isBoundary()
+    public boolean isOutboundBoundary() {
+        return this.outboundBoundary;
+    } // end of isOutboundBoundary()
 
 
 
