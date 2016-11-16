@@ -12,6 +12,8 @@ Stage_0
 
 Stage_1
  Lanes have a maximum capacity and a minimum number of time intervals for a car to traverse it.
+ Inbound and outbound lanes have no maximum capacity and no minimum number of time intervals for a car to traverse them.
+ A car leaves the grid as soon as it enters an outbound lane.
 
 Stage_2
  Intersections are roundabouts
