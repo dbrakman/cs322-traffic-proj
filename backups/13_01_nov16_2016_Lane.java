@@ -78,11 +78,11 @@ public class Lane {
             return true;
         } // end of if(this.isFull())
 
-        if(this.isOutboundBoundary())
+        if(this.isBoundary())
         {
             System.out.println("   car#" + c.getID() + " has left the grid");
             // Future enhancement: update stats for the car leaving 
-        } // end of if(this.isOutboundBoundary())
+        } // end of if(this.isBoundary())
         timesInQueue.put(c,0);
         return q.add(c);
     } // end of add(Car c)
@@ -123,18 +123,6 @@ public class Lane {
 
 
 
-    public void setInboundBoundary() {
-        this.inboundBoundary = true;
-    } // end of isInboundBoundary()
-
-
-
-    public void setOutboundBoundary() {
-        this.outboundBoundary = true;
-    } // end of isOutboundBoundary()
-
-    
-    
     public boolean isInboundBoundary() {
         return this.inboundBoundary;
     } // end of isInboundBoundary()

@@ -115,7 +115,7 @@ public class Grid
 
     private void insertCar(int row, int col, int laneDir, Car c)
     {
-        (i[row][col].getInLane(laneDir)).add(c);
+        (i[row][col].getInLane(laneDir)).initialAdd(c);
     } // end of insertCar(int row, int col, int laneDir, Car c)
 
 
@@ -238,22 +238,26 @@ public class Grid
     private void setBoundaryLanes(){
         //Set boundary lanes for the bottom row
         for (int colNum = 1; colNum <= numCols; colNum++){
-            (i[1][colNum].getOutLane(0)).setIsBoundary();
+            (i[1][colNum].getOutLane(SOUTHWARD)).setOutboundBoundary();
+            (i[1][colNum].getInLane(NORTHWARD)).setInboundBoundary();
         } //end for (int colNum = 1; colNum <= numCols; colNum++)
 
         //Set boundary lanes for the top row
         for (int colNum = 1; colNum <= numCols; colNum++){
-            (i[numRows][colNum].getOutLane(2)).setIsBoundary();
+            (i[numRows][colNum].getOutLane(NORTHWARD)).setOutboundBoundary();
+            (i[numRows][colNum].getInLane(SOUTHWARD)).setInboundBoundary();
         } //end for (int colNum = 1; colNum <= numCols; colNum++)
 
         //Set boundary lanes for the west side
         for (int rowNum = 1; rowNum <= numRows; rowNum++){
-            (i[rowNum][1].getOutLane(3)).setIsBoundary();
+            (i[rowNum][1].getOutLane(WESTWARD)).setOutboundBoundary();
+            (i[rowNum][1].getInLane(EASTWARD)).setInboundBoundary();
         } // end for (int rowNum = 1; rowNum <= numRows; rowNum++)
 
         //Set boundary lanes for the east side
         for (int rowNum = 1; rowNum <= numRows; rowNum++){
-            (i[rowNum][numCols].getOutLane(1)).setIsBoundary();
+            (i[rowNum][numCols].getOutLane(EASTWARD)).setOutboundBoundary();
+            (i[rowNum][numCols].getInLane(WESTWARD)).setInboundBoundary();
         } // end for (int rowNum = 1; rowNum <= numRows; rowNum++)
 
     }
