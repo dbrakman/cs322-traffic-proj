@@ -4,8 +4,8 @@
 // **** Car 
 // *****************************************************************************
 // *****************************************************************************
-// Latest Enhancement: Corrected style rules for stage_0
 
+// Latest Enhancement: Stage 1 Style
 // The Car class keeps track of ID, when to turn, and turning direction of each
 // instance of Car, and provides such information if needed.
 
@@ -70,4 +70,3 @@ public class Car{
     }//End of setHasChangedLanes() method
 
 }
-
