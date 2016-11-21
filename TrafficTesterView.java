@@ -6,7 +6,7 @@
 // *****************************************************************************
 // *****************************************************************************
 
-// Latest Enhancement: Commented out print statements; run sim for timesteps
+// Latest Enhancement: Stage 1 style: column 80
 // NOTE: A lane has the same coordinates as the intersection the lane aims at.
 //   Throughout the rest of the semester, make sure that 
 //   intersections of a grid are processed in exactly the following order:
@@ -121,7 +121,7 @@ public class TrafficTesterView {
             numIntersectionsInOneDirection,numIntersectionsInOneDirection,
             carParameters, lengthOfSimulation,maxLaneCapacity,
             minTimeToTravelLane);
-    //System.out.println("In TrafficTesterView: running the TrafficTesterModel");
+    //System.out.println("In TrafficTesterView: running TrafficTesterModel");
     sim.run();
 
   } // main

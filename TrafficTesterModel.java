@@ -4,15 +4,15 @@
 // **** TrafficTesterModel
 // *****************************************************************************
 // *****************************************************************************
+
+// Latest Enhancement: Stage 1 Style
 // The purpose of the TrafficTesterModel is to create a grid given a provided
 // numRows and numCols.  Provided cars are then inserted into the grid.
-// Latest Enhancement: Stage 0 Corrections
-
 import java.util.ArrayList;
 
 public class TrafficTesterModel{
     Grid g;
-    int t;
+    int t; //the time within the simulation
     int lengthOfSimulation;
 
     //************Constructor************
@@ -23,13 +23,10 @@ public class TrafficTesterModel{
         //********Creating a new grid********
         //System.out.println("  Constructing a Grid...");
         g = new Grid(numRows, numCols, laneCapacity, minTimeToTravel);
-
         //********Teling the grid to make and insert cars********
         //System.out.println("  Telling the grid to make and insert cars...");
         g.insertCars(carParameters);
-
         lengthOfSimulation = lengthOfSim;
-
         //System.out.println("Exiting TrafficTesterModel()");
     }// End of TrafficTesterModel constructor 
 
