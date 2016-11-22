@@ -4,7 +4,7 @@
 // **** Intersection
 // *****************************************************************************
 // *****************************************************************************
-// Latest Enhancement: Overhauled visit and helper methods
+// Latest Enhancement: Stage 1 style
 
 //Intersection Class
 //An intersection will contain 2 Lane[]'s of size 4, for a total of 8 lanes.
@@ -114,6 +114,10 @@ public class Intersection {
 
 
 
+     //Method which when passed an int of value 1-4 returns the direction
+      // Clarification: Northward inlanes approach from the south,
+      //  therefore the order Northward, Westward, Southward, Eastward, 
+      //  corresponds to the order of processing: S-E-N-W
     private int getNthProcessedLaneDirection(int step)
     {
         if( step == 1 ){ return NORTHWARD; }
@@ -125,6 +129,8 @@ public class Intersection {
 
 
 
+    //When passed both a source lane direction and carTurnDir
+    //  returns the direction the car would turn using SENW directions
     private int getDestDir(int sourceLaneDir, int carTurnDir)
     {
         if( sourceLaneDir == NORTHWARD )
