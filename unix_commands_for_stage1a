@@ -1,0 +1,70 @@
+# How to use the current file:
+#   Step 1: Copy and paste current file into a file with the name 
+#             unix_commands_for_nov2 
+#           and save the resulting file in the iMac's Desktop directory
+#   Step 2: Preserve that file using the Unix command:
+#             cp -p unix_commands_for_nov2 save_unix_commands_for_nov2 
+#   Step 3: Edit the file unix_commands_for_nov2 replacing File2, File3, etc.,
+#           with your choice of class names; see NOTE1 below to understand
+#           what this step means as File2, File 3, etc.
+#   Step 4: Edit the file unix_commands_for_nov2 replacing "data1" with
+#           your choice of "data2", etc., IF you wish to make such a change;
+#           see NOTE2 below for what this step means as "data1", etc.
+#   Step 5: Change the "mode" of the resulting file so the file becomes
+#           executable under the Unix command interpreter, via the
+#           following Unix command:
+#             chmod +x unix_commands_for_nov2 
+#   Step 6: Try an experiment using the resulting file:
+#             ./unix_commands_for_nov2 
+#           Scroll up and down the Unix window to see if that experiment
+#           was as successful as you wanted it to be; if it is, 
+#           go to Step 7.  (Otherwise go back to Step 3 or Step 4.)
+#   Step 7: Do the following Unix to obtain a demo file:
+#             script
+#             cat unix_commands_for_nov2
+#             ./unix_commands_for_nov2
+#             exit
+#             col -b < typescript > Demo_for_nov2_2016
+#   Step 8: Submit all your *java files and all your *data* files and also
+#           the file Demo_for_nov2_2016 to the folder for you team for
+#           the top-level logic project due on Friday, where you submit
+#           all those files during the lab on Wed, Nov 2, to show the
+#           current state of your iterative enhancement.
+#!/bin/csh
+echo "<UNIX-PROMPT> pwd"
+pwd
+echo "<UNIX-PROMPT> ls -tl *java"
+ls -tl *java
+echo "<UNIX-PROMPT> wc *java"
+wc *java
+echo "<UNIX-PROMPT> cat TrafficTesterView.java"
+cat TrafficTesterView.java
+# NOTE1             On Wed, Nov 2, replace File2, File3, etc., by appropriate
+#                   Java class names to demonstrate the current stage of
+#                   your iterative enhancement.  Use as many or as few such
+#                   classes as you decide would best demonstrate the
+#                   current stage of your iterative enhancement.
+#echo "<UNIX-PROMPT> cat TrafficTesterModel.java"
+#cat TrafficTesterModel.java
+#echo "<UNIX-PROMPT> cat Grid.java"
+#cat Grid.java
+#echo "<UNIX-PROMPT> cat Intersection.java"
+#cat Intersection.java
+#echo "<UNIX-PROMPT> cat Lane.java"
+#cat Lane.java
+#echo "<UNIX-PROMPT> cat Car.java"
+#cat Car.java
+echo "<UNIX-PROMPT> /bin/rm *class"
+/bin/rm *class
+echo "<UNIX-PROMPT> javac TrafficTesterView.java"
+javac TrafficTesterView.java
+echo "<UNIX-PROMPT> ls -tl *class"
+ls -tl *class
+# NOTE2             On Wed, Nov 2, replace "data1" below by one of "data2" (or
+#                   "data3", etc.), if you wish, according to your decision on 
+#                   what would best demonstrate the current stage of your 
+#                   iterative enhancement.
+echo "<UNIX-PROMPT> cat data11_for_TrafficTesterView"
+cat data11_for_TrafficTesterView
+echo "<UNIX-PROMPT> java TrafficTesterView < data11_for_TrafficTesterView"
+java TrafficTesterView < data11_for_TrafficTesterView

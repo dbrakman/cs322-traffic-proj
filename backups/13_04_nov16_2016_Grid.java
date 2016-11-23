@@ -4,11 +4,9 @@
 // **** Grid
 // *****************************************************************************
 // *****************************************************************************
+// Latest Enhancement: Added in for loops that will insert fire intersection 
+// when appropriate 
 
-// Latest Enhancement: Stage 1 Style
-// A Grid contains a 2D array of Intersections connected by Lanes.
-// A Grid update()s once during each time interval in the Simulation that
-//   contains it.
 import java.util.*;
 import java.io.*;
 
@@ -27,7 +25,6 @@ public class Grid
     private int numCols;
     private int laneCapacity;
     private int minTimeToTravelLane;
-    private ArrayList<Car> cars;
 
     
     //Constuctor
@@ -41,7 +38,6 @@ public class Grid
         // Allocate space for numRows*numCols intersections
         // In nested for loops, construct lanes and intersections appropriately
         i = new Intersection[numRows + 1][numCols + 1];
-        cars = new ArrayList<Car>();
         for(int rowNum = 1; rowNum <= numRows; rowNum++)
         {
             for(int colNum=1; colNum <= numCols; colNum++)
@@ -85,7 +81,6 @@ public class Grid
 
     
 
-    // Processes a list of carParameters for each car
     public void insertCars(ArrayList< ArrayList<Integer> > carParameters)
     {
         //Constructs cars w/ carParameters
@@ -101,14 +96,9 @@ public class Grid
     } // end of insertCars(ArrayList< ArrayList<Integer> > carParameters)
 
 
-
-    // Perform the events associated with one simulated time interval
+    
     public void update()
     {
-        for(Car c : cars)
-        {
-            c.setHasChangedLanes(false);
-        } // end of for(Car c : cars)
         for ( int rowNum = 1; rowNum <= numRows; rowNum++ )
         {
             for ( int colNum = 1; colNum <= numCols; colNum++ )
@@ -123,19 +113,14 @@ public class Grid
 
 
 
-    // Inserts Car c at the lane pointing at intersection [row,col] and heading
-    // in the direction specified by laneDir
     private void insertCar(int row, int col, int laneDir, Car c)
     {
         (i[row][col].getInLane(laneDir)).initialAdd(c);
-        cars.add(c);
     } // end of insertCar(int row, int col, int laneDir, Car c)
 
 
 
 
-    // Constructs Intersections that depend on the lanes of the Intersections
-    // below and left of each; i.e., constructs Intersections in row >1, col >1
     private void shareLanesWithLeftAndBelow(int rowNum, int colNum)
     {
         Lane[] inLanes = new Lane[4];
@@ -171,8 +156,6 @@ public class Grid
 
 
 
-    // Constructs Intersections that depend on the lanes of the Intersection
-    // below each; i.e., constructs Intersections in row >1, col 1
     private void shareLanesWithBelow(int rowNum, int colNum)
     {
         Lane[] inLanes = new Lane[4];
@@ -202,8 +185,6 @@ public class Grid
 
 
 
-    // Constructs Intersections that depend on the lanes of the Intersection
-    // at each's left; i.e., constructs Intersections in row 1, col >1
     private void shareLanesWithLeft(int rowNum, int colNum)
     {
         Lane[] inLanes = new Lane[4];
@@ -239,8 +220,6 @@ public class Grid
 
 
 
-    // Constructs an intersection that does not depend on the lanes of any
-    //  previous intersections; i.e., constructs Intersection [1,1]
     private void shareNoLanes(int rowNum, int colNum)
     {
         Lane[] inLanes = new Lane[4];
@@ -256,7 +235,6 @@ public class Grid
 
 
 
-    // Determines and sets which Lanes enter and exit the Grid
     private void setBoundaryLanes(){
         //Set boundary lanes for the bottom row
         for (int colNum = 1; colNum <= numCols; colNum++){
@@ -282,7 +260,7 @@ public class Grid
             (i[rowNum][numCols].getInLane(WESTWARD)).setInboundBoundary();
         } // end for (int rowNum = 1; rowNum <= numRows; rowNum++)
 
-    } // end of setBoundaryLanes()
+    }
 
 
 

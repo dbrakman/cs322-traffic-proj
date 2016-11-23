@@ -5,17 +5,18 @@
 // **** Lane 
 // *****************************************************************************
 // *****************************************************************************
-// Latest Enhancement: Stage 1 Style
+// Latest Enhancement: Made inbound, outbound boundary lanes have no max capc.
+
+import java.util.Queue;
+import java.util.LinkedList; //The implementation of a queue
+import java.util.HashMap;
+
 //Lane Class
 //This class defines a "Lane" object, which will hold cars.
 //Lanes can be either incoming or outgoing depending on their direction in 
 //relation to intersections.
 //Each lane will belong to 2 intersections: as an incoming lane for one
 //and an outgoing lane for another
-
-import java.util.Queue;
-import java.util.LinkedList; //The implementation of a queue
-import java.util.HashMap;
 
 public class Lane {
     //**************Instance Variables**************
@@ -77,19 +78,17 @@ public class Lane {
             return true;
         } // end of if(this.isFull())
 
-        if(this.isOutboundBoundary())
+        if(this.isBoundary())
         {
             System.out.println("   car#" + c.getID() + " has left the grid");
             // Future enhancement: update stats for the car leaving 
-        } // end of if(this.isOutboundBoundary())
+        } // end of if(this.isBoundary())
         timesInQueue.put(c,0);
-        c.setHasChangedLanes(true);
         return q.add(c);
     } // end of add(Car c)
 
 
 
-    //adds car at boundary lane
     public boolean initialAdd(Car c)
     {
         boolean done = this.add(c);
@@ -103,17 +102,13 @@ public class Lane {
     public void update()
     {
         for( Car c : q )
-        {   
-            if (!c.getHasChangedLanes()){
-                // Increment c's timeInQueue
-                timesInQueue.put(c,timesInQueue.get(c)+1);
-            }
+        {   // Increment c's timeInQueue
+            timesInQueue.put(c,timesInQueue.get(c)+1);
         } // end of for( Car c : q )
     } // end of update()
 
 
 
-    //checks if lane is empty
     public boolean isEmpty()
     {
         return (q.peek() == null);
@@ -121,40 +116,19 @@ public class Lane {
 
     
 
-    //checks if lane is full
     public boolean isFull()
     {
-        if( this.isInboundBoundary() || this.isOutboundBoundary() )
-        {
-            return false;
-        } // end of if ( this.isInboundBoundary() || this.isOutboundBoundary() )
         return q.size() >= capacity;
     } // end of isFull()
 
 
 
-    //set method for boundary lanes entering grid
-    public void setInboundBoundary() {
-        this.inboundBoundary = true;
-    } // end of isInboundBoundary()
-
-
-
-    //set method for boundary lanes exiting grid
-    public void setOutboundBoundary() {
-        this.outboundBoundary = true;
-    } // end of isOutboundBoundary()
-
-    
-    
-    //checks if lane is boundary lane entering grid
     public boolean isInboundBoundary() {
         return this.inboundBoundary;
     } // end of isInboundBoundary()
 
 
 
-    //checks if lane is boundary lane exiting grid
     public boolean isOutboundBoundary() {
         return this.outboundBoundary;
     } // end of isOutboundBoundary()
