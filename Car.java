@@ -5,7 +5,7 @@
 // *****************************************************************************
 // *****************************************************************************
 
-// Latest Enhancement: Stage 1 Style
+// Latest Enhancement: Corrected grammar in comment
 // The Car class keeps track of ID, when to turn, and turning direction of each
 // instance of Car, and provides such information if needed.
 
@@ -36,7 +36,7 @@ public class Car{
 
 
     //Determines which direction a car will be moving.
-    //If its numBlocksBeforeTurning is 0, the it will return the car's 
+    //If its numBlocksBeforeTurning is 0, then it will return the car's 
     //turnDirectinoCode.
     //Otherwise, it will return -1, which indicates it is moving straight
     public int getCurrentDirection(){
