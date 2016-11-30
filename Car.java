@@ -60,7 +60,7 @@ public class Car{
     //Returns hasChangedLanes
     public boolean getHasChangedLanes(){
         return this.hasChangedLanes;
-    }//End of hasItMoved() method
+    }//End of getHasChangedLanes() method
 
 
 
