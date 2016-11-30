@@ -5,7 +5,7 @@
 // *****************************************************************************
 // *****************************************************************************
 
-// Latest Enhancement: Stage 1 Style
+// Latest Enhancement: Added "minTimeToTravel" comment
 // A Grid contains a 2D array of Intersections connected by Lanes.
 // A Grid update()s once during each time interval in the Simulation that
 //   contains it.
@@ -86,6 +86,8 @@ public class Grid
     
 
     // Processes a list of carParameters for each car
+    //minTimeToTravelLane is not used here because minTimeToTravelLane
+    //is specific to each Lane, not each Car
     public void insertCars(ArrayList< ArrayList<Integer> > carParameters)
     {
         //Constructs cars w/ carParameters
